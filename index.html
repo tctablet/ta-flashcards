@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Technische Akustik - Karteikarten</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:'DM Sans','Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(145deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);color:#e2e8f0;min-height:100vh;min-height:100dvh;padding:env(safe-area-inset-top) 16px 40px;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul,ol{margin:4px 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:4px}
+.ans ul,.ans ol{list-style:none}
+.ans li{font-size:14px;line-height:1.7;color:#cbd5e1}
+.ans li::before{content:"• ";color:#f59e0b;font-weight:700}
+.ans li.sub{margin-left:16px;color:#94a3b8;font-size:13px}
+.ans li.sub::before{content:"→ ";color:#64748b}
+.ans li.num::before{content:attr(data-n) ". ";font-weight:700;color:#f59e0b}
+.ans strong{color:#f1f5f9;font-weight:700}
+.ans p{margin:0 0 6px}
+.ans p:last-child{margin-bottom:0}
+
+.header{text-align:center;margin-bottom:28px;padding:20px 0;border-bottom:1px solid rgba(248,250,252,.08)}
+.title{font-size:26px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{display:block;font-size:14px;color:#94a3b8;font-weight:400;margin-top:4px}
+.exam{margin-top:6px;font-size:12px;color:#64748b;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+
+.menu{max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.panel{background:rgba(30,41,59,.7);border:1px solid rgba(248,250,252,.06);border-radius:14px;padding:20px}
+.panel-title{font-size:15px;font-weight:700;margin:0 0 14px;color:#cbd5e1;text-transform:uppercase;letter-spacing:.8px}
+
+.nav-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px 20px;border-radius:14px;font-size:15px;font-weight:700;text-align:left}
+.nav-btn .arrow{font-size:14px;color:inherit;opacity:.6}
+.nav-btn .detail{display:block;font-size:12px;font-weight:400;margin-top:2px}
+.nav-tut{background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.15));border:1px solid rgba(139,92,246,.3);color:#c4b5fd}
+.nav-tut .detail{color:#8b5cf6}
+.nav-lab{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.15));border:1px solid rgba(16,185,129,.3);color:#6ee7b7}
+.nav-lab .detail{color:#059669}
+
+.ch-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;background:rgba(15,23,42,.5);border:1px solid rgba(248,250,252,.06);border-radius:8px;color:#cbd5e1;font-size:14px;text-align:left;transition:all .15s}
+.ch-btn.active{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);color:#fbbf24}
+.ch-list{display:flex;flex-direction:column;gap:5px}
+.badge{font-size:11px;font-weight:600;background:rgba(248,250,252,.06);padding:2px 8px;border-radius:10px;color:#94a3b8;white-space:nowrap}
+
+.prog-outer{position:relative;height:28px;background:rgba(15,23,42,.6);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.prog-inner{height:100%;border-radius:14px;transition:width .4s ease;min-width:2px;background:#f59e0b}
+.prog-inner.done{background:#22c55e}
+.prog-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#f8fafc;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+
+.ck-label{display:flex;align-items:center;gap:6px;font-size:13px;color:#94a3b8;cursor:pointer}
+.ck-label input{accent-color:#f59e0b;width:18px;height:18px}
+.options{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+
+.start-btn{width:100%;padding:14px 20px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#0f172a;border-radius:10px;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px}
+.start-btn .count{font-size:13px;font-weight:500;opacity:.7}
+.reset-btn{width:100%;margin-top:8px;padding:8px 16px;border:1px solid rgba(239,68,68,.3);border-radius:8px;color:#ef4444;font-size:12px;opacity:.7}
+
+.back-btn{align-self:flex-start;padding:8px 16px;background:rgba(248,250,252,.05);border:1px solid rgba(248,250,252,.1);border-radius:8px;color:#94a3b8;font-size:13px}
+
+.quiz-c{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.card-count{text-align:center;font-size:13px;color:#64748b;font-weight:500}
+.card{background:rgba(30,41,59,.8);border:1px solid rgba(248,250,252,.08);border-radius:16px;padding:28px 24px;min-height:200px;display:flex;flex-direction:column;gap:16px;box-shadow:0 4px 24px rgba(0,0,0,.3);transition:transform .15s}
+.card:active{transform:scale(.99)}
+.card-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#f59e0b}
+.q-text{font-size:17px;font-weight:600;line-height:1.5;color:#f1f5f9}
+.a-text{font-size:14px;line-height:1.7;color:#cbd5e1}
+.hint{margin-top:auto;text-align:center;font-size:12px;color:#475569;font-style:italic}
+.rate-btns{display:flex;gap:10px}
+.r-btn{flex:1;padding:14px 16px;border-radius:10px;font-size:15px;font-weight:700}
+.r-red{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+.r-green{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.r-red:active{background:rgba(239,68,68,.3)}
+.r-green:active{background:rgba(34,197,94,.3)}
+.ch-tag{text-align:center;font-size:11px;color:#475569;font-weight:500;padding:4px 12px;background:rgba(248,250,252,.03);border-radius:20px;align-self:center}
+
+.done-c{max-width:480px;margin:40px auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.done-c .emoji{font-size:56px}
+.done-c h2{font-size:24px;font-weight:700;color:#f1f5f9}
+.done-stats{display:flex;gap:24px;font-size:18px}
+.done-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+.tut-page,.lab-page{max-width:700px;margin:0 auto}
+.tut-header{margin:16px 0 24px}
+.tut-header h2{font-size:20px;font-weight:800;color:#f1f5f9}
+.tut-header p{font-size:13px;color:#94a3b8;margin:6px 0 0}
+.acc-list{display:flex;flex-direction:column;gap:8px}
+.acc-item{background:rgba(30,41,59,.7);border:1px solid rgba(248,250,252,.06);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.acc-item.open{border-color:rgba(245,158,11,.4)}
+.acc-item.open.lab{border-color:rgba(16,185,129,.4)}
+.acc-header{display:flex;align-items:center;gap:10px;width:100%;padding:14px 16px;font-size:14px;font-weight:600;text-align:left;color:#cbd5e1}
+.acc-item.open .acc-header{color:#fbbf24}
+.acc-item.open.lab .acc-header{color:#34d399}
+.acc-icon{font-size:18px}
+.acc-title{flex:1}
+.acc-kap{font-size:11px;color:#64748b;font-weight:500;background:rgba(248,250,252,.05);padding:2px 8px;border-radius:8px}
+.acc-arrow{font-size:12px;color:#64748b;transition:transform .2s}
+.acc-item.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}
+.topic-box{background:rgba(15,23,42,.5);border:1px solid rgba(248,250,252,.04);border-radius:10px;padding:12px 14px}
+.topic-title{font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.topic-title.exam-rel{color:#f59e0b}
+.topic-title.lab-rel{color:#10b981}
+.topic-list{margin:0;padding:0 0 0 16px;display:flex;flex-direction:column;gap:5px}
+.topic-list li{font-size:13px;line-height:1.6;color:#cbd5e1}
+.hidden{display:none!important}
+
+@media(max-width:400px){
+  .title{font-size:22px}
+  .card{padding:20px 18px}
+  .q-text{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ===== DATA =====
+const tutorials=[{id:"tut1",num:1,title:"Einführung",icon:"📊",skriptKap:"Kap. 1",topics:[{title:"Pegelrechnung & Effektivwerte",points:["Schalldruckpegel: Lₚ = 20·lg(p̃/p₀) dB mit p₀ = 20 µPa","Umkehrung: p̃ = p₀·10^(Lₚ/20) → z.B. 80 dB → p̃ = 0,2 Pa","Trick: 6 dB → Verdopplung des Schalldrucks, 20 dB → Verzehnfachung","Effektivwert einer Summe: p̃²_ges = p̃₁² + p̃₂² (nur bei inkohärenten oder verschiedenen Frequenzen!)"]},{title:"Pegeladdition & Oktavbandanalyse",points:["Gesamtpegel: Lₚ,ges = 10·lg(Σ 10^(Lₚᵢ/10)) dB","Gleichlaute Quellen: n Quellen → +10·lg(n) dB (2 Quellen → +3 dB)","A-Bewertung: Korrekturwerte je Oktavband addieren, dann Gesamtpegel bilden","Typisch: −26 dB bei 63 Hz, −16 dB bei 125 Hz, +1 dB bei 1 kHz"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Pegelrechnung ohne Taschenrechner beherrschen (10^0.1 ≈ 1,26; 10^0.3 ≈ 2)","Unterschied linearer Pegel (dB) vs. A-bewerteter Pegel (dBA) erklären können","60 dB bei 50 Hz klingt deutlich leiser als 60 dB bei 1 kHz → A-Bewertung nötig"]}]},{id:"tut2",num:2,title:"Schallwellen",icon:"〰️",skriptKap:"Kap. 2",topics:[{title:"Wellenausbreitung & Zeitverschiebung",points:["Ebene Welle p(x,t) = F(t − x/c): Signal an x₂ ist zeitverschobene Kopie von x₁","Zeitverschiebung Δt = (x₂−x₁)/c → Form bleibt erhalten","Ausbreitungsrichtung: +x bei F(t−x/c), −x bei F(t+x/c)"]},{title:"Interferenz & Stehende Wellen",points:["Überlagerung: p = 2p̃·cos(Δφ/2)·cos(ωt + φ_mittel)","Konstruktiv (Δφ=0): Verdopplung, Destruktiv (Δφ=π): Auslöschung","Stehende Welle = hin- + rücklaufende Welle → ortsabhängige Amplitude"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Dispersionsfreiheit: In Luft c unabhängig von f → Wellenform bleibt erhalten","Phasenverschiebung durch Laufzeit: Δφ = k·Δx = 2πf·Δx/c","Wellenlänge bei 20°C: λ = c/f → bei 1 kHz: λ ≈ 0,34 m"]}]},{id:"tut3",num:3,title:"Grundgleichungen & Wellengleichung",icon:"📐",skriptKap:"Kap. 3",topics:[{title:"Drei Grundgleichungen → Wellengleichung",points:["Kontinuitätsgleichung: Massenerhaltung → verknüpft ∂ρ'/∂t mit ∇·ṽ","Euler-Gleichung: ρ₀·∂ṽ/∂t = −∇p (Kraftbilanz)","Zustandsgleichung: p = c²·ρ' (isentrop) → c² = κRT für ideales Gas","Zusammen: Δp − (1/c²)·∂²p/∂t² = 0"]},{title:"Schallgeschwindigkeit",points:["c = √(κRT) mit κ=1,4 (Luft), R=287 J/(kg·K)","Bei 20°C: c ≈ 343 m/s; bei 0°C: c ≈ 331 m/s","Isotherme Zustandsänderung (κ=1): c wäre kleiner → isentrop ist korrekt","Konvektive vs. lokale Beschleunigung: Verhältnis ~ Mach-Zahl M → vernachlässigbar für M ≪ 1"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Linearisierung: Kleine Schwankungsgrößen, Produkte höherer Ordnung vernachlässigt","6 Annahmen der Wellengleichung: keine Quellen, reibungsfrei, isentrop, kleine Größen, kein konvektiver Term, ruhendes Fluid","Warum isentrop? → Druckschwankungen so schnell, dass kein Wärmeaustausch"]}]},{id:"tut4",num:4,title:"Ebene Wellen",icon:"⚡️",skriptKap:"Kap. 4",topics:[{title:"Freie Ausbreitung & Impedanz",points:["Ebene Welle: p/v = Z₀ = ρ₀c ≈ 412 Ns/m³ (Luft 20°C)","Schnelle: ṽ = p̃/(ρ₀c)","In Wasser (Z₀ ≈ 1,48·10⁶ Ns/m³): bei gleichem p̃ ist Schnelle viel kleiner"]},{title:"Reflexion & Transmission",points:["r = (Z_W − Z₀)/(Z_W + Z₀)","t = 2Z_W/(Z_W + Z₀) → kann > 1 sein!","Energieerhaltung: |r|² + (Z₁/Z₂)·|t|² = 1","Wasser→Luft: Totalreflexion, aber t → 2 (Amplitude!)"]},{title:"Folienresonator",points:["Dünne Folie (m'') im Abstand d vor schallharter Wand","Z_W = jωm'' − jZ₀·cot(kd)","Resonanz bei Im(Z_W)=0 → f_res = c/(2π)·√(ρ₀/(m''·d))"]},{title:"Prüfungsrelevante Erkenntnisse",points:["t>1 erklären: Energieerhaltung über Impedanzverhältnis","Schallhart (Z_W→∞): r=1, Druck verdoppelt sich","Schallweich (Z_W=0): r=−1, Druck verschwindet an Wand"]}]},{id:"tut5",num:5,title:"Kugelwellen & Schallintensität",icon:"🌐",skriptKap:"Kap. 5",topics:[{title:"Kugelwelle",points:["p̃(r) = p̃(r₀)·r₀/r → 1/r-Abnahme, −6 dB pro Abstandsverdopplung","Schnelle mit Nahfeldanteil: v = (p/Z₀)·(1 + 1/(jkr))","Fernfeld ab kr ≫ 1, Phasenverschiebung φ = arctan(1/(kr))","Bei 100 Hz (λ ≈ 3,4 m): Fernfeld erst ab ca. 20 m"]},{title:"Schallintensität & Leistung",points:["I = p̃²/(ρ₀c) (Fernfeld, ebene-Wellen-Näherung)","P = p̃²·4πr²/(ρ₀c) über Hüllfläche","L_W = L_p + 10·lg(S/S₀) mit S₀ = 1 m²"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Intensität ≠ Energiedichte: I = Leistung/Fläche, w = Energie/Volumen","Nahfeld (kr<1): p und v phasenverschoben → Blindleistung","Holzhäcksler: P über Öffnung, dann Kugelwelle → L_p in Entfernung"]}]},{id:"tut6",num:6,title:"Reflexion, Brechung & Streuung",icon:"↩️",skriptKap:"Kap. 6",topics:[{title:"Schräger Schalleinfall",points:["r(θ) = (Z_W·cosθ − Z₀)/(Z_W·cosθ + Z₀) für lokal reagierende Wand","Streifender Einfall (θ→90°): r → −1 (Totalreflexion!)","Stehende Welle vor der Wand: p = p_e·(e^{−jkx·cosθ} + r·e^{jkx·cosθ})"]},{title:"Brechung & Totalreflexion",points:["Snellius: sinθ₁/c₁ = sinθ₂/c₂","Totalreflexion ab sinθ_krit = c₁/c₂ (wenn c₂ > c₁)","Luft→Wasser: θ_krit ≈ 13° → fast immer Totalreflexion"]},{title:"Diffuser Schalleinfall",points:["α_d = ∫₀^{π/2} 2·α(θ)·cosθ·sinθ dθ","Gauß-Quadratur 2. Ordnung: gute Näherung","α_d ist der für Raumakustik relevante Wert"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Leistungsbilanz: ρ + τ + δ = 1","Absorptionsgrad α = 1 − ρ = τ + δ","Atmosphärische Brechung: Temperatur-/Windgradienten ändern c → Schallschatten"]}]},{id:"tut7",num:7,title:"Poröse Schallabsorber",icon:"🧽",skriptKap:"Kap. 7",topics:[{title:"Materialparameter & Modelle",points:["Drei Parameter: Strömungswiderstand Ξ, Porosität σ, Tortuosität q²","Miki-Modell: Empirisch, σ≈1, q²≈1 → nur f/Ξ","Hamet-Modell: Allgemeiner, berücksichtigt σ und q²","k_a und Z_a komplex → Reflexionsfaktor → Absorptionsgrad"]},{title:"Einflussgrößen auf Absorption",points:["Höhere Frequenz → mehr Absorption","Größere Schichtdicke d → bessere Tieftonabsorption (Faustregel: d ≥ λ/4)","Optimaler Strömungswiderstand: Ξ·d/Z₀ ≈ 1–3","Dimensionslose Darstellung: f·d/c und Ξ·d/Z₀"]},{title:"Wandimpedanz & Luftspalt",points:["Auf schallharter Wand: Z_W = −j·Z_a·cot(k_a·d)","Luftspalt verschiebt Peak zu tieferen Frequenzen","5 cm Absorber + 20 cm Luftspalt ≈ 25 cm Absorber für tiefe f"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Verlustmechanismen: Viskose Reibung + thermische Verluste → Wärme","Zusammenhang Ξ → Absorption qualitativ skizzieren können","Im(k_a) → exponentielle Dämpfung im Material"]}]},{id:"tut8",num:8,title:"Raumakustik",icon:"🏛️",skriptKap:"Kap. 8, 9",topics:[{title:"Eigenfrequenzen Quaderraum",points:["f = c/2·√((n_x/L_x)² + (n_y/L_y)² + (n_z/L_z)²)","Schallharte Wände → v_n=0 → Kosinus-Eigenformen","Modenzahl N(f) ≈ 4πf³V/(3c³) → steigt kubisch","Nur für einfache Geometrie analytisch → sonst FEM"]},{title:"Diffuses Feld & Nachhallzeit",points:["3 Annahmen: Ortsunabhängige Energiedichte, Einfall aus allen Richtungen, Addition ebener Wellen","Sabine: T = 0,161·V/A mit A = Σ α_d,i·S_i","L_p fällt linear mit t (in dB), Energiedichte klingt exponentiell","60 dB Abfall in Zeit T"]},{title:"Typische Übungsaufgaben",points:["Schallleistung aus T: A = 0,161V/T → P aus L_p und A","Absorptionsgrad aus Hallraum: T mit/ohne Probe → α_d","Lärmminderung: ΔL_p = 10·lg(A_neu/A_alt) → Verdopplung A → −3 dB","Konzertsaal: T bei verschiedener Besetzung"]},{title:"Hallradius",points:["L_p = L_W + 10·lg(Γ/(4πr²) + 4/A)","r_H ≈ √(A/50) für Monopol","r < r_H: Direktschall; r > r_H: Diffusfeld"]}]},{id:"tut9",num:9,title:"Schallquellen & Lighthill",icon:"✈️",skriptKap:"Kap. 10",topics:[{title:"Drei Schallentstehungsmechanismen",points:["Monopol → schwankender Massefluss (Auspuff, Lautsprecher)","Dipol → schwankende Kräfte (Wirbelablösung, Ventilator)","Quadrupol → Turbulenz/Spannungen (Freistrahl, Düse)"]},{title:"Lighthill-Analogie",points:["Links: homogene Wellengleichung (Ausbreitung), Rechts: Quellterme","Strömungsakustische Analogie: Quellen strahlen im ruhenden Medium","Quellterme: ∂ṁ/∂t (Monopol), ∇·F (Dipol), ∇∇T (Quadrupol)"]},{title:"Musikinstrumente",points:["Flöte: Dipol (Wirbelablösung) → Resonanz → Monopol (Öffnung)","Gitarre: Saite → Dipol, Resonanzkörper → Monopol","Trommel: Membran → Monopol (Volumenstrom), Fläche → Dipol"]},{title:"Prüfungsrelevante Erkenntnisse",points:["I = ½·Re(p·v*) → Phase entscheidend für Leistung","Zu jeder Quelle den Mechanismus zuordnen können","Lighthill ist keine Näherung, sondern exakte Umformung"]}]},{id:"tut10",num:10,title:"Monopol & Punktstrahler",icon:"⭐",skriptKap:"Kap. 11",topics:[{title:"Monopol-Grundlagen",points:["p = (jωρ₀)/(4π)·q̃·e^{−jkr}/r","Schallfluss q = 4πa²v bestimmt Stärke (m³/s)","P = ρ₀ω²q̃²/(8πc) = ρ₀ck²q̃²/(8π)"]},{title:"Abstrahlimpedanz",points:["Z_r = ρ₀c·[(ka)²/(1+(ka)²) + j·ka/(1+(ka)²)]","ka≪1: Re → ρ₀c·(ka)² → ineffizient","ka≫1: Re → ρ₀c → effizient","→ Tiefton-Lautsprecher brauchen große Membranen"]},{title:"Reziprozität",points:["p(x_A)/q(x_B) = p(x_B)/q(x_A) → Quelle ↔ Empfänger vertauschbar","Anwendung: Unbekannten Schallfluss bestimmen (Auspuff-Aufgabe)","Strömungsmech. Monopol: P ∝ U⁴"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Viertaktmotor: Zündfrequenz = n/(2·60) → P ∝ n⁴","Atmende Schwingform = Monopol → q̃ = S·ṽ → L_W","Lautsprecher: Aus L_p → q̃ → Membrandurchmesser","Mitschwingende Masse m_r → 3ρ₀V für ka≪1"]}]},{id:"tut11",num:11,title:"Dipol, Quadrupol & Richtwirkung",icon:"☯️",skriptKap:"Kap. 12",topics:[{title:"Dipol",points:["Zwei gegenphasige Monopole → Netto-Volumenfluss = 0","Fernfeld: p ∝ (k·f̃)/(4πr)·cosϑ → achtförmig","P_D/P_M ∝ (kd)² → akustischer Kurzschluss bei kd≪1","Strömungsmechanisch: P ∝ U⁶"]},{title:"Quadrupol & Richtwirkung",points:["Longitudinal: cos²ϑ, γ=5; Lateral: cosϑ·cosφ","Strömungsmechanisch: P ∝ U⁸ (Lighthill-Tensor)","Richtfaktor Γ, Bündelungsgrad γ, Bündelungsmaß DI=10·lg(γ)","Monopol: γ=1, Dipol: γ=3, Quadrupol: γ=5"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Antischall: Gegenphasige Monopole → Dipol → ΔL_W = 10·lg((kd)²/4)","Kraft auf Maschinenteil → Dipol → P = F̃²ω²/(12πρ₀c³)","Geschwindigkeitsreduktion = effektivste Lärmminderung (U⁶, U⁸!)","Inkohärente Quellen: p̃² ∝ N (Leistungen addieren sich)"]}]},{id:"tut12",num:12,title:"Arrays, Kolbenstrahler & Doppler",icon:"📡",skriptKap:"Kap. 12–14",topics:[{title:"Lineararray",points:["N gleichphasige Monopole → Richtwirkung abhängig von kD","Hauptkeule senkrecht zur Achse, Nebenkeulen bei hohen f","Phasensteuerung → Hauptkeule schwenkbar"]},{title:"Kolbenstrahler",points:["Richtcharakteristik ∝ J₁(ka·sinϑ)/(ka·sinϑ)","ka≪1: Monopol-artig; ka≫1: Stark gebündelt","Anwendung: Lautsprecher, Ultraschallwandler"]},{title:"Dopplereffekt",points:["f_empf = f₀/(1 − M·cosϑ) mit M = v/c","Annäherung: f₀/(1−M) → höher; Entfernung: f₀/(1+M) → tiefer","Bei Mach 1: theoretisch f → ∞ vorwärts"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Bewegte Quelle: 3 Anteile (Pulsation, Translation, Beschleunigung)","Bündelungsgrad aus Messdaten berechnen können","Helmholtz-Zahl ka und Richtcharakteristik qualitativ beschreiben"]}]}];
+
+const labore=[{id:"lab1",num:"1.1",title:"Schallleistung – Hüllflächenverfahren",icon:"📏",norm:"DIN EN ISO 3744",topics:[{title:"Ziel & Prinzip",points:["Bestimmung des Schallleistungspegels L_W einer Quelle (z.B. Maschine)","Schallleistung P ist unabhängig vom Aufstellungsort → Kenngröße der Quelle","Schallintensität I auf geschlossener Hüllfläche S integrieren: P = ∮ I·dS","Im Fernfeld (kr≫1): I = p̃²/(ρ₀c) → P lässt sich allein aus Schalldruckmessung bestimmen"]},{title:"Zentrale Formeln",points:["P = p̃²·S/(ρ₀c) → L_W = L_pm + 10·lg(S/S₀) dB, S₀=1 m²","Halbkugel über reflektierendem Boden: S = 2πr² → L_W = L_pm + 20·lg(r/r₀) + 8 dB","Vollkugel im Freifeld: S = 4πr² → L_W = L_pm + 20·lg(r/r₀) + 11 dB","Gemittelter Pegel: L_pm = 10·lg(1/N · Σ 10^(L_p,i/10)) dB"]},{title:"Messverfahren & Normen",points:["4 Verfahren: Intensitätsverfahren, Freifeld-Hüllfläche, Hallraum, Vergleichsverfahren","DIN EN ISO 3744: Hüllflächenverfahren Genauigkeitsklasse 2, freies Feld über reflekt. Ebene","Messabstand vom Bezugsquader (Maschinenoberfläche), nicht vom Mittelpunkt","Fernfeldbedingung: r > λ/2 für die tiefste relevante Frequenz"]},{title:"Korrekturen",points:["K₁ – Fremdgeräuschkorrektur: Nötig wenn Stör-L_p < 15 dB unter Messwert","K₂ – Umgebungskorrektur: Berücksichtigt Reflexionen an Raumwänden","Schätzung K₂ über äquivalente Absorptionsfläche oder Vergleich zweier Hüllflächen","Messungen in Terzbändern 100 Hz–10 kHz, dann A-bewerteter Gesamtpegel"]},{title:"⚡ Prüfungsrelevante Erkenntnisse",points:["Hüllflächenverfahren = einfachste Methode, benötigt nur Schalldruckmessung","Energieerhaltung: Gleiche P unabhängig von Hüllflächen-Geometrie/-Abstand","Auf reflektierendem Boden: S halbiert sich → +8 dB statt +11 dB","Schallleistung ≠ Schalldruck: L_W charakterisiert Quelle, L_p hängt von Umgebung ab"]}]},{id:"lab2",num:"1.2",title:"Impedanzrohr",icon:"🔬",norm:"DIN EN ISO 10534",topics:[{title:"Ziel & Prinzip",points:["Bestimmung von Absorptionsgrad α, Reflexionsfaktor r und Wandimpedanz Z_W einer Probe","Nur senkrechter Schalleinfall → 1D-Wellenausbreitung im Rohr","Überlagerung von einfallender + reflektierter Welle → stehende Welle","Aus Maxima/Minima des Schalldrucks → Rückschluss auf Probeneigenschaften"]},{title:"Zentrale Formeln",points:["Schallfeld: p(x) = p̃_e·e^(−jkx) + p̃_r·e^(+jkx)","Reflexionsfaktor: r = p̃_r/p̃_e = |r|·e^(jφ_r)","Absorptionsgrad: α = 1 − |r|² (Energiebetrachtung)","Wandimpedanz: Z_W = Z₀·(1+r)/(1−r)"]},{title:"Mini-Max-Verfahren (Stehwellenverhältnis)",points:["Stehwellenverhältnis s = p̃_max/p̃_min → |r| = (s−1)/(s+1)","Phase: φ_r = π·(4f·|x_min|/c − 1) aus Abstand des ersten Minimums","Minima/Maxima Abstand = λ/4","Erfordert bewegliche Mikrofonsonde entlang Rohrachse"]},{title:"Zwei-Mikrofon-Verfahren (Übertragungsfunktion)",points:["Messung an zwei festen Orten x₁, x₂ → Übertragungsfunktion H = p(x₂)/p(x₁)","r = [H − e^(−jk(x₂−x₁))] / [e^(jk(x₂−x₁)) − H] · e^(−j2kx₁)","Alle Frequenzen gleichzeitig mit Rauschsignal → schneller","Kalibrierung: Mikrofone vertauschen für Korrektur"]},{title:"Frequenzgrenzen",points:["Obere Grenze (Cut-Off): f_c = 1,841·c/(2πR) (Rundrohr) oder f_c = c/(2h) (Rechteckrohr)","Darüber: Höhere Moden → kein reines 1D-Schallfeld mehr","Untere Grenze (Mini-Max): Rohr muss mind. λ/2 lang sein","Zwischen Cut-Off und unterer Grenze: Gültiger Messbereich"]},{title:"⚡ Prüfungsrelevante Erkenntnisse",points:["r=1 bei schallhartem Abschluss → s→∞, α=0 → zur Verifikation nutzbar","Dickerer Absorber → mehr Tiefton-Absorption (Faustregel d≥λ/4)","Luftspalt hinter Absorber → dickerer Absorber für tiefe Frequenzen","Nur senkrechter Einfall! → α im Impedanzrohr ≠ α_d (diffus) im Hallraum","Längsdämpfung im Rohr → Stehwellenverhältnis wird unterschätzt"]}]},{id:"lab3",num:"1.3",title:"Schallfeld im Quaderraum",icon:"📦",norm:"–",topics:[{title:"Ziel & Prinzip",points:["Untersuchung von Eigenfrequenzen und Moden in einem quaderförmigen Raum","Stehende Wellen bei bestimmten Frequenzen → Resonanzerscheinungen","Eigenfrequenzen = Lösungen der Wellengleichung unter Randbedingungen","Modell-Quaderraum aus Plexiglas (510×410×310 mm)"]},{title:"Eigenfrequenzen des Quaderraums",points:["f_(m,n,o) = c/2 · √((m/l_x)² + (n/l_y)² + (o/l_z)²)","m,n,o = 0,1,2,… geben die Ordnung der Mode an","Schalldruckverteilung: p ∝ cos(mπx/l_x)·cos(nπy/l_y)·cos(oπz/l_z)","Randbedingung: Schallharte Wände → v_n = 0 an allen Wänden"]},{title:"Modentypen",points:["Kantenmoden (1D): Zwei Indizes = 0 → z.B. (1,0,0)","Flächenmoden (2D): Ein Index = 0 → z.B. (1,1,0)","Raummoden (3D): Kein Index = 0 → z.B. (1,1,1)","Höhere Frequenz → mehr Moden (N ≈ 4πVf³/(3c³) + πSf²/(4c²) + Lf/(8c))"]},{title:"Experimentelle Bestimmung",points:["Lautsprecher in Raumecke (regt alle Moden an!)","Frequenz langsam variieren, Maximum des Schalldrucks → Eigenfrequenz","Mikrofon an Ort platzieren wo Mode maximal ist (z.B. Ecke für (m,n,o)=(1,0,0))","Räumliche Verteilung abtasten → Minima und Maxima zählen"]},{title:"⚡ Prüfungsrelevante Erkenntnisse",points:["Eigenfrequenz-Formel anwenden können! Erste 14 sortiert berechnen","Schallharte Wände → Kosinus-Ansatz (Druckmaximum an Wänden!)","Abweichungen Rechnung/Messung: Nicht perfekt schallharte Wände, Temperatur, Lautsprechereinfluss","Bei hohen f: Moden so dicht → statistische Beschreibung (diffuses Feld) sinnvoller","Modenzahl steigt kubisch mit f → bei 2 kHz schon sehr viele Moden"]}]},{id:"lab4",num:"1.4",title:"Absorptionsgrad im Hallraum",icon:"🏛️",norm:"DIN EN ISO 354",topics:[{title:"Ziel & Prinzip",points:["Bestimmung des Absorptionsgrads α_S für diffusen Schalleinfall einer Probe","Messung im Hallraum (V=200 m³, S=220 m²) der TU Berlin","Diffuses Schallfeld: Schall aus allen Richtungen, ortsunabhängige Energiedichte","Vergleichsmessung: Nachhallzeit mit und ohne Probe → Absorptionsfläche"]},{title:"Theorie: Diffuses Feld & Nachhallzeit",points:["Verlustleistung: P_v = A·w·c/4 mit A = Σ α_d,j·S_j","Energiebilanz: V·dw/dt + A·c/4·w = P","Nach Abschalten: w(t) = w₀·e^(−Ac/(4V)·t) → exponentieller Abfall","L_p fällt linear mit t → Nachhallzeit T = Zeit für 60 dB Abfall"]},{title:"Sabine-Formel & Absorptionsfläche",points:["T = 0,161·V/A (Sabine-Formel) mit V in m³, A in m²","A₁ = 0,161·V/T₁ (leerer Raum)","A₂ = 0,161·V/T₂ (mit Probe)","Absorptionsfläche der Probe: A_T = A₂ − A₁ → α_S = A_T/S_Probe"]},{title:"Messdurchführung",points:["Rauschsignal über Dodekaederlautsprecher → abschalten → Abklingkurve aufnehmen","Nachhallzeit in Terzbändern 100 Hz–5 kHz","Mind. 12 Quell-/Mikrofon-Kombinationen × 3 Wiederholungen = 36 Messungen","T₂₀ oder T₃₀: Steigung aus 20 bzw. 30 dB Abfall → auf 60 dB umrechnen"]},{title:"Versuchsvarianten",points:["Leerer Hallraum → Referenz-Nachhallzeit T₁","Schaumstoff direkt auf Boden (5 cm Höhe)","Schaumstoff mit 5 cm Luftspalt (auf Holzleisten)","Person(en) im Raum → Absorptionsfläche eines Menschen"]},{title:"⚡ Prüfungsrelevante Erkenntnisse",points:["α_S (Hallraum, diffus) ≠ α (Impedanzrohr, senkrecht) → verschiedene Einfallsrichtungen!","Luftspalt unter Absorber → verschiebt Absorption zu tieferen Frequenzen","Hallraumverfahren misst diffusen Absorptionsgrad → praxisrelevanter als Impedanzrohr","Sabine-Formel auswendig: T = 0,161·V/A → A = 0,161·V/T","36 Messungen nötig wegen Abweichungen vom ideal diffusen Feld","Typische Absorptionsfläche Person: 0,5–1 m² (frequenzabhängig)"]}]}];
+
+const chapters=[{id:"ch1",title:"1 – Einführung & Schall",icon:"📊",cards:[{id:"q01",q:"Was ist Schall?",a:"• Kleine zeitliche Schwankungen des Drucks oder mechanischer Spannungen, die sich in einem Medium ausbreiten\n• Benötigt elastisches Medium\n• Ausbreitung in Form von Wellen\n• Es wird Energie aber keine Materie transportiert"},{id:"q02",q:"Erklären Sie: Infraschall / Ultraschall / Hörschall!",a:"**Hörschall:** 16 – 16.000 Hz (20.000 Hz)\n\n**Infraschall:** unter ca. 16 Hz\n\n**Ultraschall:** über 16.000 Hz"},{id:"q03",q:"Erklären Sie: Schallgeschwindigkeit / Schallschnelle!",a:"**Schallschnelle:** Wechselgeschwindigkeit der Teilchen, Symbol ṽ, vektoriell\n\n**Schallgeschwindigkeit:** Ausbreitungsgeschwindigkeit der Welle, Symbol c, Materialeigenschaft"},{id:"q04",q:"Aus welchen Hauptbestandteilen besteht das menschliche Ohr?",a:"**1. Außenohr:**\n→ Ohrmuschel: Empfängt Schallwellen\n→ Gehörgang: Leitet Schall weiter\n→ Trommelfell: Schließt den Gehörgang ab\n\n**2. Mittelohr:**\n→ Gehörknöchelchenkette (Hammer, Amboss, Steigbügel) → Hebelwirkung\n→ Ovales Fenster: Übergang zum Innenohr\n\n**3. Innenohr:**\n→ Cochlea (Schnecke): flüssigkeitsgefüllt\n→ Basilarmembran: frequenzabhängige Schwingung\n→ Haarzellen: Umwandlung in Nervenimpulse"},{id:"q05",q:"Warum werden in der Akustik Pegelgrößen verwendet? Nennen und erklären Sie ein Beispiel für eine Pegelgröße!",a:"• Sehr großer Wertebereich (20 µPa bis 200 Pa)\n• Logarithmische Darstellung komprimiert\n• 1 dB ≈ kleinster wahrnehmbarer Unterschied\n\n**Beispiel:** Lₚ = 20·log₁₀(p̃/p₀) dB mit p₀ = 20 µPa"},{id:"q06",q:"Von welchen Eigenschaften eines Schalls hängt die menschliche Lautstärkeempfindung ab?",a:"• Effektivwert des Schalldruckes\n• Frequenz: 1–4 kHz besonders empfindlich"},{id:"q07",q:"Weshalb wird die A-Bewertung verwendet?",a:"• Um Lautstärkeeindruck frequenzbewertend darzustellen\n• 60 dB bei 50 Hz klingt leiser als bei 1 kHz\n• A-Bewertung gewichtet entsprechend menschlicher Empfindlichkeit"}]},{id:"ch2",title:"2 – Schallwellen",icon:"〰️",cards:[{id:"q08",q:"Was sind Wellen?",a:"• Zeitliche und örtliche Änderungen physikalischer Größen\n• Breitet sich mit Schallgeschwindigkeit aus\n• Energietransport ohne Materietransport"},{id:"q09",q:"Vergleichen Sie ebene Welle und Kugelwelle!",a:"**Ebene Welle:**\n• Amplitude: konstant (kein Abfall)\n• Impedanz: p/v = ρ₀c (reell)\n• Lösung: p = F(t − x/c)\n\n**Kugelwelle:**\n• Amplitude: ∝ 1/r (−6 dB pro Verdopplung)\n• Impedanz: p/v komplex im Nahfeld\n• Lösung: p = F(t − r/c)/r\n• Fernfeld ab kr ≫ 1"},{id:"q10",q:"Was ist eine Wellenzahl?",a:"**k = ω/c = 2π/λ** (Einheit: 1/m)\n\n• Räumliche Frequenz der Welle\n• Gibt an, wie viele Wellenlängen auf 2π Meter passen\n• Wichtig für Helmholtz-Zahl: ka (a = Radius)"}]},{id:"ch3",title:"3 – Grundgleichungen & Wellengleichung",icon:"📐",cards:[{id:"q11",q:"Nennen und erläutern Sie die drei Grundgleichungen des Schallfeldes in Fluiden (unter physikalischen Gesichtspunkten)!",a:"**1. Kontinuitätsgleichung** → Massenerhaltung\n→ Verknüpft ∂ρ'/∂t mit ∇·ṽ\n\n**2. Euler-Gleichung** → Impulsbilanz\n→ ρ₀·∂ṽ/∂t = −∇p\n\n**3. Zustandsgleichung** → isentrop\n→ p = c²·ρ'\n\n**→ Wellengleichung:**\nΔp − (1/c²)·∂²p/∂t² = 0"},{id:"q12",q:"Wie hängt die Schallgeschwindigkeit von der Umgebungstemperatur ab?",a:"• c² = κRT (κ=1,4, R=287 J/(kg·K), T in Kelvin)\n• Hängt nur von der Temperatur ab"},{id:"q13",q:"Was wird durch die homogene lineare akustische Wellengleichung beschrieben? Nennen Sie mindestens drei wichtige Annahmen, die bei der Herleitung gemacht werden!",a:"**Wellengleichung:**\nΔp − (1/c²)·∂²p/∂t² = 0\n\n**6 Annahmen:**\n1. Keine Quellen im betrachteten Gebiet\n2. Reibungsfreies Fluid\n3. Isentrope Zustandsänderung\n4. Kleine Schwankungsgrößen (Linearisierung)\n5. Kein konvektiver Beschleunigungsterm\n6. Ruhendes Fluid (keine Grundströmung)"},{id:"q14",q:"Nennen Sie Lösungen der Wellengleichung und beschreiben Sie deren Eigenschaften!",a:"**Ebene Welle:** p = F(t−x/c)\n• Amplitude konstant, −0 dB pro Verdopplung\n\n**Kugelwelle:** p ∝ 1/r\n• −6 dB pro Abstandsverdopplung\n\n**Zylinderwelle:** p ∝ 1/√r\n• −3 dB pro Abstandsverdopplung"}]},{id:"ch4_5",title:"4/5 – Ebene Wellen, Kugelwellen & Intensität",icon:"🌐",cards:[{id:"q15",q:"Erläutern Sie den Begriff Schallintensität!",a:"• Energiefluss pro Zeit und Fläche: I = p·v\n• Ebene Welle: I = p̃²/(ρ₀c)"},{id:"q16",q:"Auf welchen Überlegungen (qualitativ) beruht der Zusammenhang zwischen Schallleistungspegel und Schalldruckpegel im freien Schallfeld?",a:"• P = I·4πr² = p̃²·4πr²/(ρ₀c)\n• L_W = L_p + 10·lg(S/S₀)"},{id:"z01",q:"Erläutern Sie die Leistungsbilanz bei der Schallausbreitung und die zugehörigen Energiegrade!",a:"**Leistungsbilanz:**\nP_einfallend = P_reflektiert + P_transmittiert + P_dissipiert\n\n**Energiegrade (dimensionslos):**\n• ρ = P_r/P_e → Reflexionsgrad\n• τ = P_t/P_e → Transmissionsgrad\n• δ = P_d/P_e → Dissipationsgrad\n\n**→ ρ + τ + δ = 1**\n\n**Absorptionsgrad:** α = 1 − ρ = τ + δ"},{id:"z02",q:"Wie kann die Schallleistung einer Quelle aus Messungen bestimmt werden?",a:"• p̃ auf Hüllfläche S messen\n• I = p̃²/Z₀ (Fernfeld)\n• L_W = L_pm + 10·lg(S/S₀) dB"}]},{id:"ch6",title:"6 – Reflexion, Brechung & Streuung",icon:"↩️",cards:[{id:"q17",q:"Mit welchen Größen kann die Reflexion an einer Wand beschrieben werden? Welche Werte nehmen diese Größen jeweils für eine schallharte und eine schallweiche Wand an?",a:"**Wandimpedanz:** Z_W = p/v_n\n\n**Reflexionsfaktor:**\nr = (Z_W − Z₀)/(Z_W + Z₀)\n\n**Drei Grenzfälle:**\n• **Schallhart** (Z_W → ∞): r = +1, Druck verdoppelt sich\n• **Schallweich** (Z_W = 0): r = −1, Druck = 0 an Wand\n• **Reflexionsfrei** (Z_W = Z₀): r = 0, vollständige Absorption"},{id:"q18",q:"Warum kann der Transmissionsfaktor auch Werte größer als eins annehmen?",a:"• Nur Amplitudenverhältnis, Energieerhaltung über Impedanz"},{id:"q19",q:"Erläutern Sie die Brechung bei schrägem Schalleinfall!",a:"• Snellius: sinθ₁/c₁ = sinθ₂/c₂\n• Totalreflexion wenn c₂ > c₁"},{id:"q20",q:"Warum kann Schall bei der Ausbreitung in der Atmosphäre gebrochen werden?",a:"• Temperatur-/Windgradienten → ortsabhängiges c\n• Normalfall: Brechung nach oben → Schattenzone"},{id:"q21",q:"Erläutern Sie die Leistungsbilanz beim Auftreffen einer Schallwelle auf eine Trennwand! Durch welche Leistungsverhältnisse werden die verschiedenen physikalischen Vorgänge charakterisiert?",a:"**Energieerhaltung:**\nP_einfallend = P_reflektiert + P_absorbiert + P_transmittiert\n\n• **Reflexionsgrad:** ρ = P_r/P_e = |r|²\n• **Transmissionsgrad:** τ = P_t/P_e\n• **Dissipationsgrad:** δ = P_d/P_e\n\nρ + τ + δ = 1\n\n**Absorptionsgrad:** α = 1 − ρ = τ + δ"},{id:"q22",q:"Was versteht man unter einem diffusen Schalleinfall?",a:"• Einfall aus allen Richtungen gleich\n• α_d = ∫ 2α(θ)·cosθ·sinθ dθ"},{id:"q23",q:"Was passiert, wenn Schallwellen auf ein Hindernis treffen, das sehr klein bzw. nicht sehr klein gegenüber der Wellenlänge ist?",a:"**Klein (kR≪1):** Kaum Störung, Streuung ~ k²\n**Groß (kR≫1):** Reflexion, Schatten, Beugung"}]},{id:"ch7",title:"7 – Poröse Schallabsorber",icon:"🧽",cards:[{id:"q24",q:"Nennen Sie Beispiele für Materialien, die als poröse Schallabsorber wirken können!",a:"• Mineralwolle, Schaumstoffe, Filz, Faserplatten, Akustikputz"},{id:"q25",q:"Welche physikalischen Mechanismen bewirken die in porösen Schallabsorbern auftretenden Verluste?",a:"• **Viskose Reibung** in engen Poren → Wärme\n• **Thermische Verluste** durch Kompression/Expansion"},{id:"q26",q:"Mit welchen mathematischen Mitteln lassen sich Verluste bei der Schallausbreitung beschreiben?",a:"• Komplexe Wellenzahl k_a (Im>0 → Dämpfung)\n• Komplexe Impedanz Z_a"},{id:"q27",q:"Nennen Sie drei Parameter, die zur Charakterisierung der porösen Eigenschaften eines Materials verwendet werden!",a:"**1. Strömungswiderstand Ξ̃** (Pa·s/m²)\n→ Widerstand gegen Durchströmung\n\n**2. Porosität σ** (dimensionslos)\n→ Anteil des Luftvolumens am Gesamtvolumen\n\n**3. Tortuosität q²** (dimensionslos)\n→ Maß für die Verwindung der Poren"},{id:"q28",q:"Wie können aus den Materialparametern Absorberkennwerte ermittelt werden? Nennen Sie mindestens ein konkretes Beispiel!",a:"• Aus Ξ̃, σ, q² → k_a und Z_a → r → α\n• **Miki-Modell:** σ≈1, q²≈1 → nur f/Ξ̃"},{id:"q29",q:"Welchen qualitativen Zusammenhang gibt es zwischen dem Absorptionsgrad einer Schicht porösen Absorbers, der Schichtdicke, der Frequenz und den Materialeigenschaften?",a:"• Höhere f → mehr Absorption\n• Größeres d → bessere Tieftonabsorption\n• Optimal: Ξ·d/Z₀ ≈ 1–3"}]},{id:"ch8_9",title:"8/9 – Raumakustik",icon:"🏛️",cards:[{id:"q30",q:"Warum kann die mathematische Vorgehensweise zur Berechnung der Eigenfrequenzen und Eigenformen eines Quaderraums nicht ohne weiteres für beliebig geformte Räume übernommen werden?",a:"• Separation nur bei einfacher Geometrie\n• Sonst nur numerisch (FEM)"},{id:"q31",q:"Wann und warum ist die statistische Beschreibung von Schallfeldern sinnvoll?",a:"• Modenzahl ~ f³ → bei hohen f zu viele\n• ~10.000 bei 1 kHz → Mittelwerte"},{id:"q32",q:"Welche Annahmen werden beim Modell des diffusen Schallfelds gemacht?",a:"**3 Annahmen:**\n1. Ortsunabhängige Energiedichte (überall gleich viel Energie)\n2. Einfall aus allen Richtungen gleichwahrscheinlich\n3. Überlagerung vieler ebener Wellen mit zufälligen Phasen\n\n• Gilt näherungsweise bei hoher Modendichte und ausreichend Reflexionen"},{id:"q33",q:"Erklären Sie die Begriffe Absorptionsfläche und Nachhallzeit sowie ihren Zusammenhang!",a:"**Äquivalente Absorptionsfläche:**\nA = Σ α_d,i · S_i  (in m²)\n\n**Sabine-Formel:**\nT = 0,161 · V / A\n→ V in m³, A in m², T in Sekunden\n\n• Größeres A → kürzere Nachhallzeit\n• Verdopplung A → −3 dB Pegelminderung"},{id:"q34",q:"Welchen Zeitverlauf weist der Schalldruckpegel in einem diffusen Feld nach dem Abschalten einer kontinuierlich arbeitenden Schallquelle auf?",a:"• L_p fällt linear (in dB)\n• Energiedichte klingt exponentiell\n• 60 dB in Zeit T"}]},{id:"ch10",title:"10 – Schallquellen & Lighthill",icon:"✈️",cards:[{id:"q35",q:"Welche grundlegenden Mechanismen bewirken die Entstehung von Fluidschall? Nennen Sie jeweils Beispiele!",a:"**1. Monopol** → schwankender Massefluss\n→ Bsp: Auspuff, Lautsprecher\n→ P ∝ U⁴\n\n**2. Dipol** → schwankende Kräfte auf Fluid\n→ Bsp: Wirbelablösung, Ventilatorblatt\n→ P ∝ U⁶\n\n**3. Quadrupol** → Turbulenzspannungen\n→ Bsp: Freistrahl, Düse\n→ P ∝ U⁸"},{id:"q36",q:"Auf welcher grundlegenden Idee basiert die Herleitung der inhomogenen Wellengleichung nach Lighthill?",a:"• Links: homogene Wellengleichung\n• Rechts: Quellterme\n• Exakte Umformung, keine Näherung"},{id:"q37",q:"Erläutern Sie für die Quellterme der inhomogenen Wellengleichung, welche Mechanismen durch diese jeweils beschrieben werden!",a:"• ∂ṁ/∂t → Monopol\n• ∇·F → Dipol\n• ∇∇T → Quadrupol"}]},{id:"ch11",title:"11 – Monopol & Punktstrahler",icon:"⭐",cards:[{id:"q38",q:"Welche Art Schallwelle erzeugt ein Monopol?",a:"• Kugelwelle: p = (jωρ₀)/(4π)·q·e^(−jkr)/r"},{id:"q39",q:"Welche Größe bestimmt die Stärke eines Monopols?",a:"• Schallfluss q = 4πa²v (m³/s)"},{id:"q40",q:"Wie sieht der prinzipielle Verlauf der Schallstrahlungsimpedanz eines Kugelstrahlers 0. Ordnung als Funktion der Frequenz aus? Welche Schlussfolgerungen ergeben sich aus den Verläufen von Real- und Imaginärteil?",a:"**Z_r = ρ₀c·[(ka)²/(1+(ka)²) + j·ka/(1+(ka)²)]**\n\n**Tiefe Frequenzen (ka ≪ 1):**\n• Re(Z_r) → ρ₀c·(ka)² → sehr klein\n• Schlechte Abstrahlung, ineffizient\n\n**Hohe Frequenzen (ka ≫ 1):**\n• Re(Z_r) → ρ₀c → effiziente Abstrahlung\n\n**→ Tiefton-Lautsprecher brauchen große Membranen!**"},{id:"q41",q:"Nennen und erläutern Sie eine Anwendung für die Reziprozitätsbeziehung von Schalldruck und Schallfluss für zwei Orte im Schallfeld!",a:"• p(x_A)/q(x_B) = p(x_B)/q(x_A)\n• Quelle↔Empfänger vertauschbar"},{id:"q42",q:"Welche Abhängigkeit zeigt die Schallleistung eines strömungsmechanisch bedingten Monopols von der Strömungsgeschwindigkeit? Wie ist diese zu erklären?",a:"• P ~ U⁴\n• Verdopplung Drehzahl → 16× Leistung"}]},{id:"ch12",title:"12 – Dipol, Quadrupol & Richtwirkung",icon:"☯️",cards:[{id:"q43",q:"Was ist das Dipolmoment?",a:"• Wechselkraft auf Fluidelement\n• Fernfeld: p ~ (k·f)/(4πr)·cos(ϑ)"},{id:"q44",q:"Von welchen Größen hängt der Schalldruck im Fernfeld eines Kugelstrahlers 1. Ordnung ab?",a:"• Abhängig von: Dipolmoment, k, 1/r, cos(ϑ)"},{id:"q45",q:"Mit welchen Größen kann die Richtwirkung von Schallstrahlern beschrieben werden?",a:"• **Richtfaktor Γ(ϑ):** Verhältnis Intensität in Richtung ϑ zu Mittelwert\n• **Bündelungsgrad γ:** Über alle Richtungen gemittelt, γ = max. Γ-Gewicht\n• **Bündelungsmaß:** DI = 10·lg(γ) dB\n\n**Vergleich:**\n• Monopol: γ = 1, DI = 0 dB (Kugel)\n• Dipol: γ = 3, DI = 4,8 dB (Acht)\n• Quadrupol: γ = 5, DI = 7 dB"},{id:"q46",q:"Welche Abhängigkeit zeigt die Schallleistung strömungsmechanisch bedingter Dipole bzw. Quadrupole von der Strömungsgeschwindigkeit?",a:"**Dipol:** P ~ U⁶\n**Quadrupol:** P ~ U⁸\n→ Geschwindigkeitsreduktion sehr effektiv"},{id:"q47",q:"Wie sieht die Richtcharakteristik von Monopol-, Dipol- und Quadrupolstrahlern aus?",a:"**Monopol:**\n• Kugelsymmetrisch (alle Richtungen gleich)\n• Γ(ϑ) = 1, γ = 1\n\n**Dipol:**\n• Achtförmig: Γ(ϑ) ∝ cos²ϑ\n• Nullstellen bei ϑ = 90°, γ = 3\n\n**Quadrupol (longitudinal):**\n• Γ(ϑ) ∝ cos⁴ϑ\n• Stärker gebündelt, γ = 5"},{id:"q48",q:"Was kann über die Schallleistung eines Monopols im Vergleich zu der zweier gleich starker, eng benachbarter Monopole gesagt werden, wenn diese gegenphasig oder gleichphasig betrieben werden?",a:"**Gleichphasig:** P ~ 4× Einzelmonopol\n**Gegenphasig (Dipol):** P ∝ (kd)² → drastische Reduktion"}]},{id:"ch13_14",title:"13/14 – Arrays & Dopplereffekt",icon:"📡",cards:[{id:"q49",q:"Was kennzeichnet das Schallfeld in großer Entfernung von mehreren gleichphasig betriebenen Monopolen?",a:"• Richtcharakteristik abhängig von kD\n• Hauptkeule senkrecht zur Achse"},{id:"q50",q:"Wie kann die Richtcharakteristik eines Linienarrays verändert werden?",a:"1. Phasensteuerung 2. kD ändern 3. Strahlerzahl 4. Tapering"},{id:"q51",q:"Wie erfolgt die Schallabstrahlung von einem Kolbenstrahler?",a:"• Überlagerung infinitesimaler Monopole\n• Richtcharakteristik abhängig von ka"},{id:"q52",q:"Welche Anteile enthält der Schall, der von einer sich bewegenden Schallflussquelle ausgeht? Welche sind davon im Fernfeld relevant?",a:"• Drei Anteile: Pulsation, Translation, Beschleunigung"},{id:"q53",q:"Beschreiben Sie den akustischen Dopplereffekt!",a:"• f_empf = f₀/(1 − M·cosϑ)\n• Annäherung: höher, Entfernung: tiefer"}]}];
+
+// ===== STATE =====
+const STORAGE_KEY="ta-flashcards-v2";
+let progress={};
+let selCh="all";
+let mode="menu";
+let doShuffle=true;
+let onlyUnknown=false;
+let deck=[];
+let ci=0;
+let flipped=false;
+let expandedTut=null;
+let expandedLab=null;
+
+function loadProgress(){try{const d=localStorage.getItem(STORAGE_KEY);return d?JSON.parse(d):{};}catch{return{};}}
+function saveProgress(p){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(p));}catch{}}
+
+const allCards=chapters.flatMap(ch=>ch.cards.map(c=>({...c,chapterId:ch.id,chapterTitle:ch.title})));
+const totalCardCount=allCards.length;
+
+function getCurCards(){
+  if(selCh==="all")return allCards;
+  const ch=chapters.find(c=>c.id===selCh);
+  return ch?ch.cards.map(c=>({...c,chapterId:ch.id,chapterTitle:ch.title})):[];
+}
+
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+function renderMd(text){
+  if(!text)return"";
+  let h=text
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+    .replace(/^(\d+)\.\s+(.+)$/gm,'<li class="num" data-n="$1">$2</li>')
+    .replace(/^• (.+)$/gm,"<li>$1</li>")
+    .replace(/^→ (.+)$/gm,'<li class="sub">$1</li>')
+    .replace(/\n{2,}/g,"</p><p>")
+    .replace(/\n/g,"<br/>");
+  h=h.replace(/((?:<li[^>]*>.*?<\/li>(?:<br\/?>)?)+)/g,m=>{
+    const tag=m.includes('class="num"')?"ol":"ul";
+    return`<${tag}>${m.replace(/<br\/?>/g,"")}</${tag}>`;
+  });
+  return`<p>${h}</p>`;
+}
+
+function progressBar(known,total){
+  const pct=total>0?(known/total)*100:0;
+  return`<div class="prog-outer"><div class="prog-inner${pct===100?" done":""}" style="width:${pct}%"></div><span class="prog-text">${known}/${total} gewusst (${Math.round(pct)}%)</span></div>`;
+}
+
+// ===== RENDER =====
+function render(){
+  const app=document.getElementById("app");
+  let html=`<header class="header"><h1 class="title">Technische Akustik</h1><span class="subtitle">Karteikarten & Tutorien · Teil I · ${totalCardCount} Fragen</span><div class="exam">Prüfung: 27. Feb 2026</div></header>`;
+
+  if(mode==="menu") html+=renderMenu();
+  else if(mode==="tutorials") html+=renderTutorials();
+  else if(mode==="labore") html+=renderLabore();
+  else if(mode==="quiz") html+=renderQuiz();
+  else if(mode==="done") html+=renderDone();
+
+  app.innerHTML=html;
+  bindEvents();
+}
+
+function renderMenu(){
+  const cur=getCurCards();
+  const knownN=cur.filter(c=>progress[c.id]==="known").length;
+  const allKnown=Object.values(progress).filter(v=>v==="known").length;
+  const unknownCount=cur.filter(c=>progress[c.id]!=="known").length;
+
+  let h=`<div class="menu">`;
+  h+=`<button class="nav-btn nav-tut" data-action="tutorials"><span style="font-size:22px">📚</span><span style="flex:1">Tutorien-Zusammenfassung<span class="detail">${tutorials.length} Übungen · Prüfungsrelevante Erkenntnisse</span></span><span class="arrow">→</span></button>`;
+  h+=`<button class="nav-btn nav-lab" data-action="labore"><span style="font-size:22px">🔬</span><span style="flex:1">Labore – Prüfungswissen<span class="detail">${labore.length} Versuche · Theorie, Formeln & Erkenntnisse</span></span><span class="arrow">→</span></button>`;
+
+  h+=`<div class="panel"><h2 class="panel-title">Kapitel wählen</h2><div class="ch-list">`;
+  h+=`<button class="ch-btn${selCh==="all"?" active":""}" data-ch="all"><span>📚</span><span style="flex:1;text-align:left">Alle Kapitel</span><span class="badge">${allKnown}/${totalCardCount}</span></button>`;
+  chapters.forEach(ch=>{
+    const k=ch.cards.filter(c=>progress[c.id]==="known").length;
+    h+=`<button class="ch-btn${selCh===ch.id?" active":""}" data-ch="${ch.id}"><span>${ch.icon}</span><span style="flex:1;text-align:left;font-size:13px">${ch.title}</span><span class="badge">${k}/${ch.cards.length}</span></button>`;
+  });
+  h+=`</div></div>`;
+
+  h+=`<div class="panel"><h2 class="panel-title">Lernfortschritt</h2>`;
+  h+=progressBar(knownN,cur.length);
+  h+=`<div class="options"><label class="ck-label"><input type="checkbox" id="ck-shuffle"${doShuffle?" checked":""}> Zufällige Reihenfolge</label><label class="ck-label"><input type="checkbox" id="ck-unknown"${onlyUnknown?" checked":""}> Nur unbekannte</label></div>`;
+  h+=`<button class="start-btn" data-action="start">▶ Lernen starten <span class="count">${onlyUnknown?unknownCount:cur.length} Fragen</span></button>`;
+  h+=`<button class="reset-btn" data-action="reset">Fortschritt zurücksetzen</button>`;
+  h+=`</div></div>`;
+  return h;
+}
+
+function renderTutorials(){
+  let h=`<div class="tut-page"><button class="back-btn" data-action="menu">← Zurück zum Menü</button><div class="tut-header"><h2>📚 Tutorien-Zusammenfassung</h2><p>Prüfungsrelevante Erkenntnisse aus den Übungen – geordnet nach Tutorium</p></div><div class="acc-list">`;
+  tutorials.forEach(tut=>{
+    const isOpen=expandedTut===tut.id;
+    h+=`<div class="acc-item${isOpen?" open":""}"><button class="acc-header" data-tut="${tut.id}"><span class="acc-icon">${tut.icon}</span><span class="acc-title">Übung ${tut.num}: ${tut.title}</span><span class="acc-kap">${tut.skriptKap}</span><span class="acc-arrow">▼</span></button>`;
+    if(isOpen){
+      h+=`<div class="acc-body">`;
+      tut.topics.forEach(t=>{
+        const isExam=t.title.includes("Prüfung");
+        h+=`<div class="topic-box"><div class="topic-title${isExam?" exam-rel":""}">${isExam?"⚡ ":""}${t.title}</div><ul class="topic-list">`;
+        t.points.forEach(p=>{h+=`<li>${p}</li>`;});
+        h+=`</ul></div>`;
+      });
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  });
+  h+=`</div></div>`;
+  return h;
+}
+
+function renderLabore(){
+  let h=`<div class="lab-page"><button class="back-btn" data-action="menu">← Zurück zum Menü</button><div class="tut-header"><h2>🔬 Labore – Prüfungswissen</h2><p>Theorie, Formeln & Erkenntnisse aus den 4 Laborversuchen</p></div><div class="acc-list">`;
+  labore.forEach(lab=>{
+    const isOpen=expandedLab===lab.id;
+    h+=`<div class="acc-item lab${isOpen?" open":""}"><button class="acc-header" data-lab="${lab.id}"><span class="acc-icon">${lab.icon}</span><span class="acc-title">Versuch ${lab.num}: ${lab.title}</span>${lab.norm!=="–"?`<span class="acc-kap">${lab.norm}</span>`:""}<span class="acc-arrow">▼</span></button>`;
+    if(isOpen){
+      h+=`<div class="acc-body">`;
+      lab.topics.forEach(t=>{
+        const isExam=t.title.includes("⚡");
+        h+=`<div class="topic-box"><div class="topic-title${isExam?" lab-rel":""}">${t.title}</div><ul class="topic-list">`;
+        t.points.forEach(p=>{h+=`<li>${p}</li>`;});
+        h+=`</ul></div>`;
+      });
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  });
+  h+=`</div></div>`;
+  return h;
+}
+
+function renderQuiz(){
+  if(!deck.length)return"";
+  const card=deck[ci];
+  const knownSoFar=deck.slice(0,ci).filter(c=>progress[c.id]==="known").length;
+  let h=`<div class="quiz-c"><button class="back-btn" data-action="menu">← Zurück</button>`;
+  h+=progressBar(knownSoFar,deck.length);
+  h+=`<div class="card-count">Frage ${ci+1} von ${deck.length}</div>`;
+
+  if(!flipped){
+    h+=`<div class="card" data-action="flip"><div class="card-label">FRAGE</div><div class="q-text">${card.q}</div><div class="hint">Antippen zum Aufdecken</div></div>`;
+  } else {
+    h+=`<div class="card"><div class="card-label">ANTWORT</div><div class="a-text"><div class="ans">${renderMd(card.a)}</div></div></div>`;
+    h+=`<div class="rate-btns"><button class="r-btn r-red" data-rate="unknown">✗ Nicht gewusst</button><button class="r-btn r-green" data-rate="known">✓ Gewusst</button></div>`;
+  }
+  h+=`<div class="ch-tag">${card.chapterTitle}</div></div>`;
+  return h;
+}
+
+function renderDone(){
+  const knownCount=deck.filter(c=>progress[c.id]==="known").length;
+  const unknownCount=deck.filter(c=>progress[c.id]!=="known").length;
+  let h=`<div class="done-c"><div class="emoji">🎉</div><h2>Geschafft!</h2><div class="done-stats"><div><span style="color:#22c55e;font-weight:700">✓ ${knownCount}</span> gewusst</div><div><span style="color:#ef4444;font-weight:700">✗ ${unknownCount}</span> wiederholen</div></div><div class="done-btns">`;
+  if(unknownCount>0) h+=`<button class="start-btn" style="flex:none;padding:12px 24px" data-action="repeat">🔁 Unbekannte wiederholen</button>`;
+  h+=`<button class="back-btn" style="margin:0" data-action="menu">← Menü</button></div></div>`;
+  return h;
+}
+
+// ===== EVENTS =====
+function bindEvents(){
+  document.querySelectorAll("[data-action]").forEach(el=>{
+    el.addEventListener("click",e=>{
+      const a=el.dataset.action;
+      if(a==="menu"){mode="menu";expandedTut=null;expandedLab=null;render();}
+      else if(a==="tutorials"){mode="tutorials";render();}
+      else if(a==="labore"){mode="labore";render();}
+      else if(a==="start"){startQuiz();}
+      else if(a==="repeat"){onlyUnknown=true;startQuiz();}
+      else if(a==="reset"){progress={};saveProgress(progress);render();}
+      else if(a==="flip"){flipped=true;render();}
+    });
+  });
+
+  document.querySelectorAll("[data-ch]").forEach(el=>{
+    el.addEventListener("click",()=>{selCh=el.dataset.ch;render();});
+  });
+
+  document.querySelectorAll("[data-rate]").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const r=el.dataset.rate;
+      progress[deck[ci].id]=r;
+      saveProgress(progress);
+      if(ci+1<deck.length){ci++;flipped=false;render();}
+      else{mode="done";render();}
+    });
+  });
+
+  document.querySelectorAll("[data-tut]").forEach(el=>{
+    el.addEventListener("click",()=>{expandedTut=expandedTut===el.dataset.tut?null:el.dataset.tut;render();});
+  });
+
+  document.querySelectorAll("[data-lab]").forEach(el=>{
+    el.addEventListener("click",()=>{expandedLab=expandedLab===el.dataset.lab?null:el.dataset.lab;render();});
+  });
+
+  const ckShuffle=document.getElementById("ck-shuffle");
+  if(ckShuffle)ckShuffle.addEventListener("change",e=>{doShuffle=e.target.checked;render();});
+
+  const ckUnknown=document.getElementById("ck-unknown");
+  if(ckUnknown)ckUnknown.addEventListener("change",e=>{onlyUnknown=e.target.checked;render();});
+}
+
+function startQuiz(){
+  let cards=getCurCards();
+  if(onlyUnknown)cards=cards.filter(c=>progress[c.id]!=="known");
+  if(!cards.length)return;
+  deck=doShuffle?shuffle(cards):[...cards];
+  ci=0;flipped=false;mode="quiz";render();
+}
+
+// ===== INIT =====
+progress=loadProgress();
+render();
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Technische Akustik - Karteikarten</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:16px}
@@ -105,6 +106,9 @@ ul,ol{margin:4px 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:4px
 .topic-list{margin:0;padding:0 0 0 16px;display:flex;flex-direction:column;gap:5px}
 .topic-list li{font-size:13px;line-height:1.6;color:#cbd5e1}
 .hidden{display:none!important}
+.katex{font-size:1em!important}
+.katex .mord,.katex .mbin,.katex .mrel,.katex .mop{color:inherit}
+.math-rendered{display:inline}
 
 @media(max-width:400px){
   .title{font-size:22px}
@@ -115,6 +119,7 @@ ul,ol{margin:4px 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:4px
 </head>
 <body>
 <div id="app"></div>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script>
 // ===== DATA =====
 const tutorials=[{id:"tut1",num:1,title:"Einführung",icon:"📊",skriptKap:"Kap. 1",topics:[{title:"Pegelrechnung & Effektivwerte",points:["Schalldruckpegel: Lₚ = 20·lg(p̃/p₀) dB mit p₀ = 20 µPa","Umkehrung: p̃ = p₀·10^(Lₚ/20) → z.B. 80 dB → p̃ = 0,2 Pa","Trick: 6 dB → Verdopplung des Schalldrucks, 20 dB → Verzehnfachung","Effektivwert einer Summe: p̃²_ges = p̃₁² + p̃₂² (nur bei inkohärenten oder verschiedenen Frequenzen!)"]},{title:"Pegeladdition & Oktavbandanalyse",points:["Gesamtpegel: Lₚ,ges = 10·lg(Σ 10^(Lₚᵢ/10)) dB","Gleichlaute Quellen: n Quellen → +10·lg(n) dB (2 Quellen → +3 dB)","A-Bewertung: Korrekturwerte je Oktavband addieren, dann Gesamtpegel bilden","Typisch: −26 dB bei 63 Hz, −16 dB bei 125 Hz, +1 dB bei 1 kHz"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Pegelrechnung ohne Taschenrechner beherrschen (10^0.1 ≈ 1,26; 10^0.3 ≈ 2)","Unterschied linearer Pegel (dB) vs. A-bewerteter Pegel (dBA) erklären können","60 dB bei 50 Hz klingt deutlich leiser als 60 dB bei 1 kHz → A-Bewertung nötig"]}]},{id:"tut2",num:2,title:"Schallwellen",icon:"〰️",skriptKap:"Kap. 2",topics:[{title:"Wellenausbreitung & Zeitverschiebung",points:["Ebene Welle p(x,t) = F(t − x/c): Signal an x₂ ist zeitverschobene Kopie von x₁","Zeitverschiebung Δt = (x₂−x₁)/c → Form bleibt erhalten","Ausbreitungsrichtung: +x bei F(t−x/c), −x bei F(t+x/c)"]},{title:"Interferenz & Stehende Wellen",points:["Überlagerung: p = 2p̃·cos(Δφ/2)·cos(ωt + φ_mittel)","Konstruktiv (Δφ=0): Verdopplung, Destruktiv (Δφ=π): Auslöschung","Stehende Welle = hin- + rücklaufende Welle → ortsabhängige Amplitude"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Dispersionsfreiheit: In Luft c unabhängig von f → Wellenform bleibt erhalten","Phasenverschiebung durch Laufzeit: Δφ = k·Δx = 2πf·Δx/c","Wellenlänge bei 20°C: λ = c/f → bei 1 kHz: λ ≈ 0,34 m"]}]},{id:"tut3",num:3,title:"Grundgleichungen & Wellengleichung",icon:"📐",skriptKap:"Kap. 3",topics:[{title:"Drei Grundgleichungen → Wellengleichung",points:["Kontinuitätsgleichung: Massenerhaltung → verknüpft ∂ρ'/∂t mit ∇·ṽ","Euler-Gleichung: ρ₀·∂ṽ/∂t = −∇p (Kraftbilanz)","Zustandsgleichung: p = c²·ρ' (isentrop) → c² = κRT für ideales Gas","Zusammen: Δp − (1/c²)·∂²p/∂t² = 0"]},{title:"Schallgeschwindigkeit",points:["c = √(κRT) mit κ=1,4 (Luft), R=287 J/(kg·K)","Bei 20°C: c ≈ 343 m/s; bei 0°C: c ≈ 331 m/s","Isotherme Zustandsänderung (κ=1): c wäre kleiner → isentrop ist korrekt","Konvektive vs. lokale Beschleunigung: Verhältnis ~ Mach-Zahl M → vernachlässigbar für M ≪ 1"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Linearisierung: Kleine Schwankungsgrößen, Produkte höherer Ordnung vernachlässigt","6 Annahmen der Wellengleichung: keine Quellen, reibungsfrei, isentrop, kleine Größen, kein konvektiver Term, ruhendes Fluid","Warum isentrop? → Druckschwankungen so schnell, dass kein Wärmeaustausch"]}]},{id:"tut4",num:4,title:"Ebene Wellen",icon:"⚡️",skriptKap:"Kap. 4",topics:[{title:"Freie Ausbreitung & Impedanz",points:["Ebene Welle: p/v = Z₀ = ρ₀c ≈ 412 Ns/m³ (Luft 20°C)","Schnelle: ṽ = p̃/(ρ₀c)","In Wasser (Z₀ ≈ 1,48·10⁶ Ns/m³): bei gleichem p̃ ist Schnelle viel kleiner"]},{title:"Reflexion & Transmission",points:["r = (Z_W − Z₀)/(Z_W + Z₀)","t = 2Z_W/(Z_W + Z₀) → kann > 1 sein!","Energieerhaltung: |r|² + (Z₁/Z₂)·|t|² = 1","Wasser→Luft: Totalreflexion, aber t → 2 (Amplitude!)"]},{title:"Folienresonator",points:["Dünne Folie (m'') im Abstand d vor schallharter Wand","Z_W = jωm'' − jZ₀·cot(kd)","Resonanz bei Im(Z_W)=0 → f_res = c/(2π)·√(ρ₀/(m''·d))"]},{title:"Prüfungsrelevante Erkenntnisse",points:["t>1 erklären: Energieerhaltung über Impedanzverhältnis","Schallhart (Z_W→∞): r=1, Druck verdoppelt sich","Schallweich (Z_W=0): r=−1, Druck verschwindet an Wand"]}]},{id:"tut5",num:5,title:"Kugelwellen & Schallintensität",icon:"🌐",skriptKap:"Kap. 5",topics:[{title:"Kugelwelle",points:["p̃(r) = p̃(r₀)·r₀/r → 1/r-Abnahme, −6 dB pro Abstandsverdopplung","Schnelle mit Nahfeldanteil: v = (p/Z₀)·(1 + 1/(jkr))","Fernfeld ab kr ≫ 1, Phasenverschiebung φ = arctan(1/(kr))","Bei 100 Hz (λ ≈ 3,4 m): Fernfeld erst ab ca. 20 m"]},{title:"Schallintensität & Leistung",points:["I = p̃²/(ρ₀c) (Fernfeld, ebene-Wellen-Näherung)","P = p̃²·4πr²/(ρ₀c) über Hüllfläche","L_W = L_p + 10·lg(S/S₀) mit S₀ = 1 m²"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Intensität ≠ Energiedichte: I = Leistung/Fläche, w = Energie/Volumen","Nahfeld (kr<1): p und v phasenverschoben → Blindleistung","Holzhäcksler: P über Öffnung, dann Kugelwelle → L_p in Entfernung"]}]},{id:"tut6",num:6,title:"Reflexion, Brechung & Streuung",icon:"↩️",skriptKap:"Kap. 6",topics:[{title:"Schräger Schalleinfall",points:["r(θ) = (Z_W·cosθ − Z₀)/(Z_W·cosθ + Z₀) für lokal reagierende Wand","Streifender Einfall (θ→90°): r → −1 (Totalreflexion!)","Stehende Welle vor der Wand: p = p_e·(e^{−jkx·cosθ} + r·e^{jkx·cosθ})"]},{title:"Brechung & Totalreflexion",points:["Snellius: sinθ₁/c₁ = sinθ₂/c₂","Totalreflexion ab sinθ_krit = c₁/c₂ (wenn c₂ > c₁)","Luft→Wasser: θ_krit ≈ 13° → fast immer Totalreflexion"]},{title:"Diffuser Schalleinfall",points:["α_d = ∫₀^{π/2} 2·α(θ)·cosθ·sinθ dθ","Gauß-Quadratur 2. Ordnung: gute Näherung","α_d ist der für Raumakustik relevante Wert"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Leistungsbilanz: ρ + τ + δ = 1","Absorptionsgrad α = 1 − ρ = τ + δ","Atmosphärische Brechung: Temperatur-/Windgradienten ändern c → Schallschatten"]}]},{id:"tut7",num:7,title:"Poröse Schallabsorber",icon:"🧽",skriptKap:"Kap. 7",topics:[{title:"Materialparameter & Modelle",points:["Drei Parameter: Strömungswiderstand Ξ, Porosität σ, Tortuosität q²","Miki-Modell: Empirisch, σ≈1, q²≈1 → nur f/Ξ","Hamet-Modell: Allgemeiner, berücksichtigt σ und q²","k_a und Z_a komplex → Reflexionsfaktor → Absorptionsgrad"]},{title:"Einflussgrößen auf Absorption",points:["Höhere Frequenz → mehr Absorption","Größere Schichtdicke d → bessere Tieftonabsorption (Faustregel: d ≥ λ/4)","Optimaler Strömungswiderstand: Ξ·d/Z₀ ≈ 1–3","Dimensionslose Darstellung: f·d/c und Ξ·d/Z₀"]},{title:"Wandimpedanz & Luftspalt",points:["Auf schallharter Wand: Z_W = −j·Z_a·cot(k_a·d)","Luftspalt verschiebt Peak zu tieferen Frequenzen","5 cm Absorber + 20 cm Luftspalt ≈ 25 cm Absorber für tiefe f"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Verlustmechanismen: Viskose Reibung + thermische Verluste → Wärme","Zusammenhang Ξ → Absorption qualitativ skizzieren können","Im(k_a) → exponentielle Dämpfung im Material"]}]},{id:"tut8",num:8,title:"Raumakustik",icon:"🏛️",skriptKap:"Kap. 8, 9",topics:[{title:"Eigenfrequenzen Quaderraum",points:["f = c/2·√((n_x/L_x)² + (n_y/L_y)² + (n_z/L_z)²)","Schallharte Wände → v_n=0 → Kosinus-Eigenformen","Modenzahl N(f) ≈ 4πf³V/(3c³) → steigt kubisch","Nur für einfache Geometrie analytisch → sonst FEM"]},{title:"Diffuses Feld & Nachhallzeit",points:["3 Annahmen: Ortsunabhängige Energiedichte, Einfall aus allen Richtungen, Addition ebener Wellen","Sabine: T = 0,161·V/A mit A = Σ α_d,i·S_i","L_p fällt linear mit t (in dB), Energiedichte klingt exponentiell","60 dB Abfall in Zeit T"]},{title:"Typische Übungsaufgaben",points:["Schallleistung aus T: A = 0,161V/T → P aus L_p und A","Absorptionsgrad aus Hallraum: T mit/ohne Probe → α_d","Lärmminderung: ΔL_p = 10·lg(A_neu/A_alt) → Verdopplung A → −3 dB","Konzertsaal: T bei verschiedener Besetzung"]},{title:"Hallradius",points:["L_p = L_W + 10·lg(Γ/(4πr²) + 4/A)","r_H ≈ √(A/50) für Monopol","r < r_H: Direktschall; r > r_H: Diffusfeld"]}]},{id:"tut9",num:9,title:"Schallquellen & Lighthill",icon:"✈️",skriptKap:"Kap. 10",topics:[{title:"Drei Schallentstehungsmechanismen",points:["Monopol → schwankender Massefluss (Auspuff, Lautsprecher)","Dipol → schwankende Kräfte (Wirbelablösung, Ventilator)","Quadrupol → Turbulenz/Spannungen (Freistrahl, Düse)"]},{title:"Lighthill-Analogie",points:["Links: homogene Wellengleichung (Ausbreitung), Rechts: Quellterme","Strömungsakustische Analogie: Quellen strahlen im ruhenden Medium","Quellterme: ∂ṁ/∂t (Monopol), ∇·F (Dipol), ∇∇T (Quadrupol)"]},{title:"Musikinstrumente",points:["Flöte: Dipol (Wirbelablösung) → Resonanz → Monopol (Öffnung)","Gitarre: Saite → Dipol, Resonanzkörper → Monopol","Trommel: Membran → Monopol (Volumenstrom), Fläche → Dipol"]},{title:"Prüfungsrelevante Erkenntnisse",points:["I = ½·Re(p·v*) → Phase entscheidend für Leistung","Zu jeder Quelle den Mechanismus zuordnen können","Lighthill ist keine Näherung, sondern exakte Umformung"]}]},{id:"tut10",num:10,title:"Monopol & Punktstrahler",icon:"⭐",skriptKap:"Kap. 11",topics:[{title:"Monopol-Grundlagen",points:["p = (jωρ₀)/(4π)·q̃·e^{−jkr}/r","Schallfluss q = 4πa²v bestimmt Stärke (m³/s)","P = ρ₀ω²q̃²/(8πc) = ρ₀ck²q̃²/(8π)"]},{title:"Abstrahlimpedanz",points:["Z_r = ρ₀c·[(ka)²/(1+(ka)²) + j·ka/(1+(ka)²)]","ka≪1: Re → ρ₀c·(ka)² → ineffizient","ka≫1: Re → ρ₀c → effizient","→ Tiefton-Lautsprecher brauchen große Membranen"]},{title:"Reziprozität",points:["p(x_A)/q(x_B) = p(x_B)/q(x_A) → Quelle ↔ Empfänger vertauschbar","Anwendung: Unbekannten Schallfluss bestimmen (Auspuff-Aufgabe)","Strömungsmech. Monopol: P ∝ U⁴"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Viertaktmotor: Zündfrequenz = n/(2·60) → P ∝ n⁴","Atmende Schwingform = Monopol → q̃ = S·ṽ → L_W","Lautsprecher: Aus L_p → q̃ → Membrandurchmesser","Mitschwingende Masse m_r → 3ρ₀V für ka≪1"]}]},{id:"tut11",num:11,title:"Dipol, Quadrupol & Richtwirkung",icon:"☯️",skriptKap:"Kap. 12",topics:[{title:"Dipol",points:["Zwei gegenphasige Monopole → Netto-Volumenfluss = 0","Fernfeld: p ∝ (k·f̃)/(4πr)·cosϑ → achtförmig","P_D/P_M ∝ (kd)² → akustischer Kurzschluss bei kd≪1","Strömungsmechanisch: P ∝ U⁶"]},{title:"Quadrupol & Richtwirkung",points:["Longitudinal: cos²ϑ, γ=5; Lateral: cosϑ·cosφ","Strömungsmechanisch: P ∝ U⁸ (Lighthill-Tensor)","Richtfaktor Γ, Bündelungsgrad γ, Bündelungsmaß DI=10·lg(γ)","Monopol: γ=1, Dipol: γ=3, Quadrupol: γ=5"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Antischall: Gegenphasige Monopole → Dipol → ΔL_W = 10·lg((kd)²/4)","Kraft auf Maschinenteil → Dipol → P = F̃²ω²/(12πρ₀c³)","Geschwindigkeitsreduktion = effektivste Lärmminderung (U⁶, U⁸!)","Inkohärente Quellen: p̃² ∝ N (Leistungen addieren sich)"]}]},{id:"tut12",num:12,title:"Arrays, Kolbenstrahler & Doppler",icon:"📡",skriptKap:"Kap. 12–14",topics:[{title:"Lineararray",points:["N gleichphasige Monopole → Richtwirkung abhängig von kD","Hauptkeule senkrecht zur Achse, Nebenkeulen bei hohen f","Phasensteuerung → Hauptkeule schwenkbar"]},{title:"Kolbenstrahler",points:["Richtcharakteristik ∝ J₁(ka·sinϑ)/(ka·sinϑ)","ka≪1: Monopol-artig; ka≫1: Stark gebündelt","Anwendung: Lautsprecher, Ultraschallwandler"]},{title:"Dopplereffekt",points:["f_empf = f₀/(1 − M·cosϑ) mit M = v/c","Annäherung: f₀/(1−M) → höher; Entfernung: f₀/(1+M) → tiefer","Bei Mach 1: theoretisch f → ∞ vorwärts"]},{title:"Prüfungsrelevante Erkenntnisse",points:["Bewegte Quelle: 3 Anteile (Pulsation, Translation, Beschleunigung)","Bündelungsgrad aus Messdaten berechnen können","Helmholtz-Zahl ka und Richtcharakteristik qualitativ beschreiben"]}]}];
@@ -150,6 +155,79 @@ function getCurCards(){
 
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 
+// ===== MATH RENDERING =====
+function toLatex(s){
+  return s
+    .replace(/p̃/g,'\\tilde{p}').replace(/ṽ/g,'\\tilde{v}')
+    .replace(/q̃/g,'\\tilde{q}').replace(/ṁ/g,'\\dot{m}')
+    .replace(/f̃/g,'\\tilde{f}').replace(/F̃/g,'\\tilde{F}')
+    .replace(/Ξ̃/g,'\\tilde{\\Xi}')
+    .replace(/α/g,'\\alpha ').replace(/β/g,'\\beta ')
+    .replace(/γ/g,'\\gamma ').replace(/δ/g,'\\delta ')
+    .replace(/ε/g,'\\varepsilon ').replace(/θ/g,'\\theta ')
+    .replace(/ϑ/g,'\\vartheta ').replace(/κ/g,'\\kappa ')
+    .replace(/λ/g,'\\lambda ').replace(/μ/g,'\\mu ')
+    .replace(/ν/g,'\\nu ').replace(/ξ/g,'\\xi ')
+    .replace(/π/g,'\\pi ').replace(/ρ/g,'\\rho ')
+    .replace(/σ/g,'\\sigma ').replace(/τ/g,'\\tau ')
+    .replace(/φ/g,'\\varphi ').replace(/ω/g,'\\omega ')
+    .replace(/Δ/g,'\\Delta ').replace(/Σ/g,'\\Sigma ')
+    .replace(/Ξ/g,'\\Xi ').replace(/Γ/g,'\\Gamma ')
+    .replace(/Φ/g,'\\Phi ').replace(/Ψ/g,'\\Psi ')
+    .replace(/∂/g,'\\partial ').replace(/∇/g,'\\nabla ')
+    .replace(/∞/g,'\\infty ').replace(/≈/g,'\\approx ')
+    .replace(/≪/g,'\\ll ').replace(/≫/g,'\\gg ')
+    .replace(/∝/g,'\\propto ').replace(/≠/g,'\\neq ')
+    .replace(/≤/g,'\\leq ').replace(/≥/g,'\\geq ')
+    .replace(/·/g,'\\cdot ').replace(/×/g,'\\times ')
+    .replace(/±/g,'\\pm ').replace(/−/g,'-')
+    .replace(/²/g,'^{2}').replace(/³/g,'^{3}')
+    .replace(/⁴/g,'^{4}').replace(/⁶/g,'^{6}').replace(/⁸/g,'^{8}')
+    .replace(/₀/g,'_{0}').replace(/₁/g,'_{1}')
+    .replace(/₂/g,'_{2}').replace(/₃/g,'_{3}')
+    .replace(/ₚ/g,'_{p}').replace(/ᵢ/g,'_{i}')
+    .replace(/∮/g,'\\oint ').replace(/∫/g,'\\int ')
+    .replace(/√/g,'\\sqrt')
+    .replace(/\blg\b/g,'\\lg').replace(/\bln\b/g,'\\ln')
+    .replace(/\bsin\b/g,'\\sin').replace(/\bcos\b/g,'\\cos')
+    .replace(/\barctan\b/g,'\\arctan')
+    .replace(/\bRe\b/g,'\\mathrm{Re}')
+    .replace(/\bIm\b/g,'\\mathrm{Im}');
+}
+
+function tryRenderKatex(latex){
+  if(typeof katex==='undefined')return null;
+  try{return katex.renderToString(latex,{throwOnError:false,displayMode:false});}
+  catch(e){return null;}
+}
+
+function postProcessMath(){
+  if(typeof katex==='undefined')return;
+  const els=document.querySelectorAll('.ans li,.ans p,.topic-list li,.a-text p,.q-text');
+  const mathChars=/[α-ωΑ-ΩΔΣΞΓΦΨ₀₁₂₃ₚᵢ²³⁴⁶⁸∂∇∞∝≈≪≫·×±√∮∫ṽp̃q̃ṁf̃ω]/;
+  els.forEach(el=>{
+    if(!mathChars.test(el.textContent))return;
+    let html=el.innerHTML;
+    let changed=false;
+    // Pattern 1: Equations with = or ≈ that have math chars
+    html=html.replace(/(?<![<\w])([A-Za-z\u0370-\u03FF\u1E00-\u1EFF_][A-Za-z\u0370-\u03FF\u1E00-\u1EFF\u0300-\u036F₀₁₂₃ₚᵢ_'\/\(\),\s]{0,20})\s*([=≈])\s*([^<]{2,}?)(?=<\/|$)/g,(m,lhs,op,rhs)=>{
+      if(!mathChars.test(m))return m;
+      const latex=toLatex(lhs.trim()+' '+op+' '+rhs.trim());
+      const rendered=tryRenderKatex(latex);
+      if(rendered){changed=true;return rendered;}
+      return m;
+    });
+    // Pattern 2: Proportionalities P ∝ U⁴
+    html=html.replace(/([A-Za-z\u0370-\u03FF_][A-Za-z\u0370-\u03FF₀₁₂₃ₚ_']{0,10})\s*(∝)\s*([^<]{1,}?)(?=<\/|$)/g,(m,lhs,op,rhs)=>{
+      const latex=toLatex(lhs.trim()+' '+op+' '+rhs.trim());
+      const rendered=tryRenderKatex(latex);
+      if(rendered){changed=true;return rendered;}
+      return m;
+    });
+    if(changed)el.innerHTML=html;
+  });
+}
+
 function renderMd(text){
   if(!text)return"";
   let h=text
@@ -184,6 +262,7 @@ function render(){
 
   app.innerHTML=html;
   bindEvents();
+  postProcessMath();
 }
 
 function renderMenu(){

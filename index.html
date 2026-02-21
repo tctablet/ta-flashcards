@@ -118,6 +118,53 @@ ul,ol{margin:4px 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:4px
 .detail-text blockquote{margin:10px 0;padding:10px 14px;background:rgba(56,189,248,.06);border-left:3px solid rgba(56,189,248,.4);border-radius:0 8px 8px 0;font-style:italic;color:#94a3b8;font-size:13px;line-height:1.7}
 .detail-text blockquote strong{color:#cbd5e1;font-style:normal}
 .detail-text .quelle{display:inline-block;margin-top:6px;padding:2px 8px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);border-radius:6px;font-size:11px;font-weight:600;color:#38bdf8;font-style:normal;letter-spacing:.3px}
+.ix-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;color:#a78bfa;font-size:13px;font-weight:600;transition:all .2s}
+.ix-toggle:active{background:rgba(167,139,250,.15)}
+.ix-toggle .arrow{font-size:10px;transition:transform .2s}
+.ix-toggle.open .arrow{transform:rotate(180deg)}
+.ix-container{background:rgba(30,41,59,.8);border:1px solid rgba(167,139,250,.2);border-radius:16px;padding:20px 16px;margin-top:8px}
+.ix-container canvas{display:block;margin:8px auto;border-radius:8px}
+.ix-row{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0}
+.ix-sg{flex:1;min-width:120px}
+.ix-sg label{display:block;font-size:11px;color:#94a3b8;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.ix-sg input[type=range]{width:100%;accent-color:#a78bfa;height:6px}
+.ix-val{font-size:15px;font-weight:700;color:#e2e8f0;margin:4px 0}
+.ix-val span{color:#a78bfa}
+.ix-val small{font-size:11px;font-weight:400;color:#94a3b8}
+.ix-out{background:rgba(15,23,42,.5);border:1px solid rgba(248,250,252,.06);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#cbd5e1;line-height:1.7}
+.ix-out strong{color:#a78bfa}
+.ix-tabs{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.ix-tab{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;background:rgba(248,250,252,.05);border:1px solid rgba(248,250,252,.08);color:#94a3b8;transition:all .15s;cursor:pointer}
+.ix-tab.active{background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.4);color:#a78bfa}
+.ix-legend{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0;font-size:11px;color:#94a3b8}
+.ix-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.ix-bar-wrap{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.ix-bar-row{display:flex;align-items:center;gap:8px}
+.ix-bar-label{font-size:11px;color:#94a3b8;width:80px;text-align:right;font-weight:600}
+.ix-bar{height:24px;border-radius:4px;transition:width .3s;min-width:2px;position:relative;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.ix-bar-val{font-size:11px;font-weight:700;color:rgba(255,255,255,.9)}
+.ix-quiz-cats{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap}
+.ix-quiz-cat{flex:1;min-width:80px;padding:10px 8px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;border:2px solid;opacity:.6;transition:all .15s;cursor:pointer}
+.ix-quiz-cat.active{opacity:1;transform:scale(1.05)}
+.ix-quiz-items{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.ix-quiz-item{padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600;background:rgba(248,250,252,.05);border:1px solid rgba(248,250,252,.1);color:#cbd5e1;transition:all .15s;cursor:pointer}
+.ix-quiz-item.sel{background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.4);color:#a78bfa}
+.ix-quiz-item.placed{opacity:.4;pointer-events:none}
+.ix-quiz-item.correct{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4);color:#4ade80}
+.ix-quiz-item.wrong{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:#f87171}
+.ix-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#a78bfa;cursor:pointer;transition:all .15s}
+.ix-btn:active{background:rgba(167,139,250,.25)}
+.ix-check-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:#cbd5e1}
+.ix-check-item input{accent-color:#a78bfa;width:18px;height:18px}
+.ix-check-item.ok{color:#4ade80}
+.ix-check-item.nok{color:#f87171;text-decoration:line-through}
+.ix-info{font-size:11px;color:#64748b;margin:4px 0;font-style:italic}
+.ix-stacked{display:flex;height:28px;border-radius:6px;overflow:hidden;margin:8px 0}
+.ix-stacked div{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;transition:width .3s}
+.ix-tbl{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+.ix-tbl th{text-align:left;color:#94a3b8;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(248,250,252,.08)}
+.ix-tbl td{padding:4px 8px;color:#cbd5e1}
+.ix-tbl tr:nth-child(even) td{background:rgba(248,250,252,.02)}
 .hidden{display:none!important}
 .katex{font-size:1em!important}
 .katex .mord,.katex .mbin,.katex .mrel,.katex .mop{color:inherit}
@@ -320,6 +367,7 @@ function render(){
 
   app.innerHTML=html;
   bindEvents();
+  if(mode==="quiz"&&showIx&&deck[ci]){mountIx(deck[ci].id);}
 }
 
 function renderMenu(){
@@ -409,6 +457,10 @@ function renderQuiz(){
         h+=`<div class="detail-card"><div class="card-label">AUSFÜHRLICHE ANTWORT</div><div class="detail-text">${renderMd(card.detail)}</div></div>`;
       }
     }
+    if(cardIx[card.id]){
+      h+=`<button class="ix-toggle${showIx?" open":""}" data-action="toggle-ix"><span class="arrow">▼</span> Interaktiv erkunden</button>`;
+      if(showIx){h+=`<div class="ix-container" id="ix-mount"></div>`;}
+    }
     h+=`<div class="rate-btns"><button class="r-btn r-red" data-rate="unknown">✗ Nicht gewusst</button><button class="r-btn r-green" data-rate="known">✓ Gewusst</button></div>`;
   }
   h+=`<div class="ch-tag">${card.chapterTitle}</div></div>`;
@@ -429,7 +481,7 @@ function bindEvents(){
   document.querySelectorAll("[data-action]").forEach(el=>{
     el.addEventListener("click",e=>{
       const a=el.dataset.action;
-      if(a==="menu"){mode="menu";expandedTut=null;expandedLab=null;render();}
+      if(a==="menu"){mode="menu";expandedTut=null;expandedLab=null;cleanAnims();showIx=false;render();}
       else if(a==="tutorials"){mode="tutorials";render();}
       else if(a==="labore"){mode="labore";render();}
       else if(a==="start"){startQuiz();}
@@ -437,6 +489,7 @@ function bindEvents(){
       else if(a==="reset"){progress={};saveProgress(progress);render();}
       else if(a==="flip"){flipped=true;render();}
       else if(a==="toggle-detail"){showDetail=!showDetail;render();if(showDetail){const dc=document.querySelector(".detail-card");if(dc)dc.scrollIntoView({behavior:"smooth",block:"nearest"});}}
+      else if(a==="toggle-ix"){cleanAnims();showIx=!showIx;render();if(showIx){mountIx(deck[ci].id);const ic=document.querySelector(".ix-container");if(ic)ic.scrollIntoView({behavior:"smooth",block:"nearest"});}}
     });
   });
 
@@ -449,7 +502,7 @@ function bindEvents(){
       const r=el.dataset.rate;
       progress[deck[ci].id]=r;
       saveProgress(progress);
-      showDetail=false;
+      showDetail=false;showIx=false;cleanAnims();
       if(ci+1<deck.length){ci++;flipped=false;render();}
       else{mode="done";render();}
     });
@@ -476,6 +529,1105 @@ function startQuiz(){
   if(!cards.length)return;
   deck=doShuffle?shuffle(cards):[...cards];
   ci=0;flipped=false;mode="quiz";render();
+}
+
+// ===== INTERACTIVE ELEMENTS =====
+let showIx=false;
+let ixState={};
+let activeAnims=[];
+function cleanAnims(){activeAnims.forEach(id=>cancelAnimationFrame(id));activeAnims=[];}
+
+// --- Reusable: Slider ---
+function mkSlider(el,o){
+  const g=document.createElement('div');g.className='ix-sg';
+  const l=document.createElement('label');l.textContent=o.label||'';
+  const inp=document.createElement('input');inp.type='range';
+  inp.min=o.min;inp.max=o.max;inp.step=o.step||'any';inp.value=o.value;
+  const v=document.createElement('div');v.className='ix-val';
+  g.append(l,inp,v);el.appendChild(g);
+  return{inp,val:v,g};
+}
+
+// --- Reusable: Canvas ---
+function mkCanvas(el,w,h){
+  const dpr=window.devicePixelRatio||1;
+  const c=document.createElement('canvas');
+  c.width=w*dpr;c.height=h*dpr;
+  c.style.width=w+'px';c.style.height=h+'px';
+  c.style.maxWidth='100%';
+  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
+  el.appendChild(c);return{c,ctx,w,h};
+}
+
+// --- Reusable: Polar Plot ---
+function drawPolar(ctx,cx,cy,R,patterns,showGrid){
+  ctx.save();
+  if(showGrid!==false){
+    ctx.strokeStyle='rgba(148,163,184,.15)';ctx.lineWidth=1;
+    for(let i=1;i<=4;i++){ctx.beginPath();ctx.arc(cx,cy,R*i/4,0,Math.PI*2);ctx.stroke();}
+    for(let a=0;a<360;a+=30){const r=a*Math.PI/180;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(r),cy-R*Math.sin(r));ctx.stroke();}
+  }
+  patterns.forEach(p=>{
+    ctx.beginPath();ctx.strokeStyle=p.color;ctx.lineWidth=2;
+    for(let i=0;i<=360;i++){
+      const th=i*Math.PI/180;const rv=Math.abs(p.fn(th))*R;
+      const x=cx+rv*Math.cos(th),y=cy-rv*Math.sin(th);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.closePath();ctx.stroke();
+    ctx.fillStyle=p.color.replace(')',',0.08)').replace('rgb','rgba');
+    ctx.fill();
+  });
+  ctx.restore();
+}
+
+// --- Reusable: Tabs ---
+function mkTabs(el,labels,onChange){
+  const wrap=document.createElement('div');wrap.className='ix-tabs';
+  const btns=labels.map((lb,i)=>{
+    const b=document.createElement('button');b.className='ix-tab'+(i===0?' active':'');
+    b.textContent=lb;
+    b.onclick=()=>{btns.forEach(x=>x.className='ix-tab');b.className='ix-tab active';onChange(i);};
+    wrap.appendChild(b);return b;
+  });
+  el.appendChild(wrap);return btns;
+}
+
+// --- Reusable: Output Box ---
+function mkOut(el){const d=document.createElement('div');d.className='ix-out';el.appendChild(d);return d;}
+
+// --- Reusable: Legend ---
+function mkLegend(el,items){
+  const d=document.createElement('div');d.className='ix-legend';
+  items.forEach(it=>{d.innerHTML+=`<span><i style="background:${it.color}"></i>${it.label}</span>`;});
+  el.appendChild(d);
+}
+
+// --- Reusable: Info text ---
+function mkInfo(el,txt){const d=document.createElement('div');d.className='ix-info';d.textContent=txt;el.appendChild(d);}
+
+// ===== BUILDER FUNCTIONS =====
+
+// --- q03: Schallschnelle vs Schallgeschwindigkeit ---
+function ixQ03(el){
+  const {ctx,w,h}=mkCanvas(el,300,150);
+  let t=0;
+  const N=25;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pulseX=((t*80)%(w+60))-30;
+    for(let i=0;i<N;i++){
+      const bx=10+i*(w-20)/(N-1),by=h/2;
+      const dist=bx-pulseX;
+      const env=Math.exp(-dist*dist/600);
+      const dx=env*Math.sin(dist*0.15)*12;
+      ctx.beginPath();ctx.arc(bx+dx,by,4,0,Math.PI*2);
+      ctx.fillStyle=`rgba(167,139,250,${0.3+env*0.7})`;ctx.fill();
+    }
+    // pulse indicator
+    ctx.strokeStyle='rgba(245,158,11,0.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(pulseX,15);ctx.lineTo(pulseX,h-15);ctx.stroke();ctx.setLineDash([]);
+    // labels
+    ctx.font='11px system-ui';ctx.fillStyle='#a78bfa';ctx.fillText('← ṽ: Teilchen schwingen lokal →',10,16);
+    ctx.fillStyle='#f59e0b';ctx.fillText('c: Wellenfront propagiert →',10,h-6);
+    t+=1/60;
+    activeAnims.push(requestAnimationFrame(draw));
+  }
+  draw();
+  mkInfo(el,'Teilchen (violett) schwingen hin/her, die Wellenfront (orange) wandert durch.');
+}
+
+// --- q04: Ohr-Beschriftungsquiz ---
+function ixQ04(el){
+  const parts=[
+    {name:'Ohrmuschel',x:15,y:35},{name:'Gehörgang',x:30,y:50},
+    {name:'Trommelfell',x:42,y:50},{name:'Hammer/Amboss/Steigbügel',x:55,y:40},
+    {name:'Cochlea (Schnecke)',x:72,y:55},{name:'Haarzellen',x:85,y:45}
+  ];
+  const zones=['Außenohr','Mittelohr','Innenohr'];
+  const correct=[0,0,0,1,2,2];// zone index for each part
+  const colors=['#f59e0b','#a78bfa','#38bdf8'];
+  let answers={},selItem=null,checked=false;
+
+  function redraw(){
+    el.innerHTML='';
+    // zones header
+    const zh=document.createElement('div');zh.className='ix-quiz-cats';
+    zones.forEach((z,i)=>{
+      const d=document.createElement('div');d.className='ix-quiz-cat';
+      d.style.borderColor=colors[i];d.style.color=colors[i];
+      d.textContent=z;zh.appendChild(d);
+    });
+    el.appendChild(zh);
+    // items
+    const ig=document.createElement('div');ig.className='ix-quiz-items';
+    parts.forEach((p,i)=>{
+      const b=document.createElement('button');
+      b.className='ix-quiz-item'+(selItem===i?' sel':'')+(answers[i]!=null?' placed':'');
+      if(checked){b.className='ix-quiz-item '+(answers[i]===correct[i]?'correct':'wrong');}
+      b.textContent=p.name+(answers[i]!=null&&!checked?' → '+zones[answers[i]]:'');
+      if(!checked){
+        b.onclick=()=>{
+          if(answers[i]!=null){delete answers[i];selItem=null;redraw();return;}
+          selItem=i;redraw();
+        };
+      }
+      ig.appendChild(b);
+    });
+    el.appendChild(ig);
+    // zone tap targets (when item selected)
+    if(selItem!==null&&!checked){
+      const zt=document.createElement('div');zt.className='ix-quiz-cats';
+      zones.forEach((z,i)=>{
+        const b=document.createElement('button');b.className='ix-quiz-cat active';
+        b.style.borderColor=colors[i];b.style.color=colors[i];b.textContent='→ '+z;
+        b.onclick=()=>{answers[selItem]=i;selItem=null;redraw();};
+        zt.appendChild(b);
+      });
+      el.appendChild(zt);
+      mkInfo(el,'Tippe auf eine Zone um "'+parts[selItem].name+'" zuzuordnen');
+    }
+    // check button
+    if(Object.keys(answers).length===parts.length&&!checked){
+      const cb=document.createElement('button');cb.className='ix-btn';cb.textContent='✓ Überprüfen';
+      cb.onclick=()=>{checked=true;redraw();};
+      el.appendChild(cb);
+    }
+    if(checked){
+      const sc=parts.filter((_,i)=>answers[i]===correct[i]).length;
+      const o=mkOut(el);o.innerHTML=`<strong>${sc}/${parts.length}</strong> richtig zugeordnet`;
+      const rb=document.createElement('button');rb.className='ix-btn';rb.textContent='↻ Nochmal';rb.style.marginTop='8px';
+      rb.onclick=()=>{answers={};selItem=null;checked=false;redraw();};
+      el.appendChild(rb);
+    }
+  }
+  redraw();
+}
+
+// --- q05: dB-Skala Explorer ---
+function ixQ05(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Schalldruck p̃ (log)',min:-4.7,max:2.3,step:0.01,value:-1});
+  el.appendChild(row);
+  const out=mkOut(el);
+  const marks=[
+    {p:0.00002,label:'Hörschwelle',db:0},{p:0.0002,label:'Blätterrauschen',db:20},
+    {p:0.002,label:'Flüstern',db:40},{p:0.02,label:'Unterhaltung',db:60},
+    {p:0.2,label:'Straßenverkehr',db:80},{p:2,label:'Disco',db:100},
+    {p:20,label:'Düsenjet (Nähe)',db:120},{p:200,label:'Schmerzgrenze',db:134}
+  ];
+  function update(){
+    const pVal=Math.pow(10,parseFloat(inp.value));
+    const Lp=20*Math.log10(pVal/0.00002);
+    val.innerHTML=`<span>${Lp.toFixed(1)} dB</span> <small>(p̃ = ${pVal<0.001?pVal.toExponential(1):pVal.toFixed(3)} Pa)</small>`;
+    let near=marks.reduce((a,b)=>Math.abs(b.db-Lp)<Math.abs(a.db-Lp)?b:a);
+    const pct=Math.max(0,Math.min(100,(Lp/140)*100));
+    out.innerHTML=`<div style="height:8px;border-radius:4px;background:rgba(248,250,252,.06);margin-bottom:8px"><div style="height:100%;width:${pct}%;border-radius:4px;background:linear-gradient(90deg,#22c55e,#f59e0b,#ef4444)"></div></div><strong>≈ ${near.label}</strong> (${near.db} dB)`;
+  }
+  inp.oninput=update;update();
+}
+
+// --- q06: Isophonen ---
+function ixQ06(el){
+  const {ctx,w,h}=mkCanvas(el,300,200);
+  // Simplified equal-loudness contour data (phon values at octave frequencies)
+  // freq: 31,63,125,250,500,1k,2k,4k,8k,16k
+  const freqs=[31,63,125,250,500,1000,2000,4000,8000,16000];
+  const curves={
+    20:[72,52,37,27,22,20,16,14,22,52],
+    40:[85,68,55,46,42,40,38,36,40,64],
+    60:[96,82,72,64,60,60,57,56,60,78],
+    80:[108,96,88,82,78,80,77,74,78,92]
+  };
+  const colors={'20':'#22c55e','40':'#f59e0b','60':'#a78bfa','80':'#ef4444'};
+  function fToX(f){return 20+Math.log10(f/20)/Math.log10(20000/20)*(w-40);}
+  function dBToY(db){return h-20-(db/120)*(h-40);}
+  ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+  // grid
+  ctx.strokeStyle='rgba(148,163,184,.1)';ctx.lineWidth=0.5;
+  [20,40,60,80,100,120].forEach(db=>{ctx.beginPath();ctx.moveTo(20,dBToY(db));ctx.lineTo(w-10,dBToY(db));ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';ctx.fillText(db+'dB',0,dBToY(db)+3);});
+  [63,125,250,500,1000,2000,4000,8000].forEach(f=>{ctx.beginPath();ctx.moveTo(fToX(f),15);ctx.lineTo(fToX(f),h-15);ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';ctx.fillText(f>=1000?(f/1000)+'k':f,fToX(f)-8,h-4);});
+  // curves
+  Object.entries(curves).forEach(([phon,dbs])=>{
+    ctx.beginPath();ctx.strokeStyle=colors[phon];ctx.lineWidth=2;
+    dbs.forEach((db,i)=>{const x=fToX(freqs[i]),y=dBToY(db);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+    ctx.stroke();
+    ctx.fillStyle=colors[phon];ctx.font='bold 10px system-ui';
+    ctx.fillText(phon+' phon',fToX(freqs[5])+4,dBToY(curves[phon][5])-6);
+  });
+  mkLegend(el,[{color:'#22c55e',label:'20 phon (leise)'},{color:'#f59e0b',label:'40 phon'},{color:'#a78bfa',label:'60 phon'},{color:'#ef4444',label:'80 phon (laut)'}]);
+  mkInfo(el,'Isophonen: Kurven gleicher empfundener Lautstärke. Bei 1 kHz stimmen dB und phon überein.');
+}
+
+// --- q07: A-Bewertung ---
+function ixQ07(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Frequenz',min:1.3,max:4.2,step:0.01,value:3});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  const out=mkOut(el);
+  // A-weighting corrections (dB) at standard frequencies
+  const aData=[[20,-50.5],[31.5,-39.4],[63,-26.2],[125,-16.1],[250,-8.6],[500,-3.2],[1000,0],[2000,1.2],[4000,1.0],[8000,-1.1],[16000,-6.6]];
+  function interp(f){
+    for(let i=0;i<aData.length-1;i++){
+      if(f>=aData[i][0]&&f<=aData[i+1][0]){
+        const t=(Math.log10(f)-Math.log10(aData[i][0]))/(Math.log10(aData[i+1][0])-Math.log10(aData[i][0]));
+        return aData[i][1]+t*(aData[i+1][1]-aData[i][1]);
+      }
+    }
+    return f<aData[0][0]?aData[0][1]:aData[aData.length-1][1];
+  }
+  function fToX(f){return 15+Math.log10(f/20)/Math.log10(20000/20)*(w-30);}
+  function dBToY(db){return h/2-(db/60)*(h-30);}
+  function draw(){
+    const f=Math.pow(10,parseFloat(inp.value));
+    const ka=interp(f);
+    val.innerHTML=`<span>${f>=1000?(f/1000).toFixed(1)+' kHz':Math.round(f)+' Hz'}</span>`;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    // zero line
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(10,dBToY(0));ctx.lineTo(w-5,dBToY(0));ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';ctx.fillText('0 dB',0,dBToY(0)-4);
+    // curve
+    ctx.beginPath();ctx.strokeStyle='#a78bfa';ctx.lineWidth=2;
+    for(let lf=1.3;lf<=4.2;lf+=0.02){
+      const ff=Math.pow(10,lf),a=interp(ff);
+      const x=fToX(ff),y=dBToY(a);
+      lf===1.3?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    // marker
+    const mx=fToX(f),my=dBToY(ka);
+    ctx.beginPath();ctx.arc(mx,my,5,0,Math.PI*2);
+    ctx.fillStyle='#f59e0b';ctx.fill();
+    ctx.strokeStyle='rgba(245,158,11,.3)';ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(mx,0);ctx.lineTo(mx,h);ctx.stroke();ctx.setLineDash([]);
+    // axis labels
+    [63,250,1000,4000,16000].forEach(ff=>{
+      ctx.fillStyle='#475569';ctx.font='9px system-ui';
+      ctx.fillText(ff>=1000?(ff/1000)+'k':ff,fToX(ff)-6,h-3);
+    });
+    out.innerHTML=`K<sub>A</sub> bei <strong>${f>=1000?(f/1000).toFixed(1)+' kHz':Math.round(f)+' Hz'}</strong> = <strong style="color:${ka>=0?'#4ade80':'#f87171'}">${ka>=0?'+':''}${ka.toFixed(1)} dB</strong>`;
+  }
+  inp.oninput=draw;draw();
+}
+
+// --- q09: Ebene vs Kugelwelle Animation ---
+function ixQ09(el){
+  const {ctx,w,h}=mkCanvas(el,300,140);
+  let t=0;
+  const mid=w/2;
+  function draw(){
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    // divider
+    ctx.strokeStyle='rgba(148,163,184,.15)';ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(mid,0);ctx.lineTo(mid,h);ctx.stroke();ctx.setLineDash([]);
+    // plane wave (left)
+    ctx.fillStyle='#94a3b8';ctx.font='bold 10px system-ui';ctx.fillText('Ebene Welle',10,14);
+    for(let i=0;i<6;i++){
+      const x=10+((t*40+i*25)%mid);
+      ctx.strokeStyle=`rgba(167,139,250,0.7)`;ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,h-10);ctx.stroke();
+    }
+    ctx.fillStyle='#64748b';ctx.font='9px system-ui';ctx.fillText('Amplitude = const',10,h-2);
+    // spherical wave (right)
+    ctx.fillStyle='#94a3b8';ctx.font='bold 10px system-ui';ctx.fillText('Kugelwelle',mid+10,14);
+    const srcX=mid+20,srcY=h/2;
+    ctx.beginPath();ctx.arc(srcX,srcY,3,0,Math.PI*2);ctx.fillStyle='#f59e0b';ctx.fill();
+    for(let i=0;i<6;i++){
+      const r=((t*40+i*25)%(mid-20));
+      if(r<5)continue;
+      const alpha=Math.max(0.1,0.8*(20/r));
+      ctx.strokeStyle=`rgba(56,189,248,${alpha})`;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.arc(srcX,srcY,r,-.6,0.6);ctx.stroke();
+    }
+    ctx.fillStyle='#64748b';ctx.font='9px system-ui';ctx.fillText('Amplitude ∝ 1/r',mid+10,h-2);
+    t+=1/60;
+    activeAnims.push(requestAnimationFrame(draw));
+  }
+  draw();
+}
+
+// --- q10: Wellenzahl-Rechner ---
+function ixQ10(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Frequenz f',min:1.3,max:4.3,step:0.01,value:3});
+  el.appendChild(row);
+  const out=mkOut(el);
+  function update(){
+    const f=Math.pow(10,parseFloat(inp.value));
+    const c=343;
+    const lam=c/f;
+    const k=(2*Math.PI)/lam;
+    val.innerHTML=`<span>${f>=1000?(f/1000).toFixed(1)+' kHz':Math.round(f)+' Hz'}</span>`;
+    out.innerHTML=`λ = <strong>${lam>=1?lam.toFixed(2)+' m':lam>=0.01?(lam*100).toFixed(1)+' cm':(lam*1000).toFixed(1)+' mm'}</strong><br>k = <strong>${k.toFixed(2)} m⁻¹</strong><br>Fernfeld (kr≫1) ab ca. <strong>${(lam/Math.PI).toFixed(2)} m</strong>`;
+  }
+  inp.oninput=update;update();
+}
+
+// --- q12: Schallgeschwindigkeit c(T) ---
+function ixQ12(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Temperatur T',min:-40,max:60,step:1,value:20});
+  el.appendChild(row);
+  const out=mkOut(el);
+  const marks=[{t:-40,c:306},{t:0,c:331},{t:20,c:343},{t:40,c:355}];
+  function update(){
+    const T=parseInt(inp.value);
+    const TK=T+273.15;
+    const c=Math.sqrt(1.4*287*TK);
+    val.innerHTML=`<span>${T} °C</span> <small>(${TK.toFixed(1)} K)</small>`;
+    let mHtml=marks.map(m=>`<span style="color:${m.t===T?'#a78bfa':'#64748b'}">${m.t}°C → ${m.c} m/s</span>`).join(' · ');
+    out.innerHTML=`c = √(κ·R·T) = <strong>${c.toFixed(1)} m/s</strong><br><span style="font-size:11px">${mHtml}</span>`;
+  }
+  inp.oninput=update;update();
+}
+
+// --- q13: Annahmen-Quiz ---
+function ixQ13(el){
+  const items=[
+    {text:'Keine Quellen im betrachteten Gebiet',correct:true},
+    {text:'Reibungsfreies (nichtviskoses) Fluid',correct:true},
+    {text:'Isentrope Zustandsänderung',correct:true},
+    {text:'Kleine Schwankungsgrößen (Linearisierung)',correct:true},
+    {text:'Kein konvektiver Beschleunigungsterm',correct:true},
+    {text:'Ruhendes Fluid (keine Grundströmung)',correct:true},
+    {text:'Temperatur muss konstant sein (isotherm)',correct:false},
+    {text:'Nur für Frequenzen unter 1 kHz gültig',correct:false}
+  ];
+  let selected=new Set(),checked=false;
+  function redraw(){
+    el.innerHTML='';
+    const title=document.createElement('div');title.className='ix-val';
+    title.innerHTML='<small>Welche Annahmen gehören zur Wellengleichung?</small>';
+    el.appendChild(title);
+    items.forEach((it,i)=>{
+      const d=document.createElement('label');
+      d.className='ix-check-item'+(checked?(it.correct&&selected.has(i)?'ok':!it.correct&&selected.has(i)?' nok':it.correct&&!selected.has(i)?' nok':''):'');
+      const cb=document.createElement('input');cb.type='checkbox';cb.checked=selected.has(i);
+      if(!checked)cb.onchange=()=>{selected.has(i)?selected.delete(i):selected.add(i);redraw();};
+      else cb.disabled=true;
+      const sp=document.createElement('span');
+      sp.textContent=it.text;
+      if(checked){
+        if(it.correct&&selected.has(i))sp.style.color='#4ade80';
+        else if(!it.correct&&selected.has(i)){sp.style.color='#f87171';sp.style.textDecoration='line-through';}
+        else if(it.correct&&!selected.has(i))sp.style.color='#f59e0b';
+      }
+      d.append(cb,sp);el.appendChild(d);
+    });
+    if(!checked){
+      const b=document.createElement('button');b.className='ix-btn';b.textContent='✓ Überprüfen';
+      b.onclick=()=>{checked=true;redraw();};el.appendChild(b);
+    }else{
+      const cor=items.filter((it,i)=>it.correct===selected.has(i)).length;
+      const o=mkOut(el);o.innerHTML=`<strong>${cor}/${items.length}</strong> richtig — es gibt genau <strong>6</strong> Annahmen`;
+      const rb=document.createElement('button');rb.className='ix-btn';rb.textContent='↻ Nochmal';rb.style.marginTop='8px';
+      rb.onclick=()=>{selected=new Set();checked=false;redraw();};el.appendChild(rb);
+    }
+  }
+  redraw();
+}
+
+// --- q14: Amplitudenabfall-Vergleich ---
+function ixQ14(el){
+  const tabs=mkTabs(el,['Amplitude','Pegel (dB)'],draw);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  let mode=0;
+  mkLegend(el,[{color:'#a78bfa',label:'Ebene (const)'},{color:'#38bdf8',label:'Kugel (1/r, −6dB)'},{color:'#f59e0b',label:'Zylinder (1/√r, −3dB)'}]);
+  function draw(m){
+    if(m!=null)mode=m;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pad={l:35,r:10,t:15,b:25};
+    const pw=w-pad.l-pad.r,ph=h-pad.t-pad.b;
+    // axes
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';
+    ctx.fillText('r →',w-pad.r-15,h-pad.b+12);
+    ctx.fillText(mode===0?'p̃':'Lp (dB)',2,pad.t+10);
+    const curves=[
+      {fn:r=>1,color:'#a78bfa'},
+      {fn:r=>1/r,color:'#38bdf8'},
+      {fn:r=>1/Math.sqrt(r),color:'#f59e0b'}
+    ];
+    const rMax=20;
+    curves.forEach(cv=>{
+      ctx.beginPath();ctx.strokeStyle=cv.color;ctx.lineWidth=2;
+      for(let i=0;i<pw;i++){
+        const r=1+i/pw*(rMax-1);
+        let y;
+        if(mode===0){y=pad.t+ph*(1-cv.fn(r));}
+        else{const db=20*Math.log10(cv.fn(r));y=pad.t+ph*(-db/60);}
+        if(y>h-pad.b)y=h-pad.b;
+        i===0?ctx.moveTo(pad.l+i,y):ctx.lineTo(pad.l+i,y);
+      }
+      ctx.stroke();
+    });
+  }
+  draw(0);
+}
+
+// --- q16/z02: Schallleistung aus Messung ---
+function ixQ16(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:iLp,val:vLp}=mkSlider(row,{label:'Lp (dB)',min:40,max:100,step:1,value:70});
+  const {inp:iR,val:vR}=mkSlider(row,{label:'Abstand r (m)',min:0.5,max:20,step:0.1,value:3});
+  el.appendChild(row);
+  const tabs=mkTabs(el,['Halbkugel (Boden)','Vollkugel (frei)'],update);
+  const out=mkOut(el);
+  let geo=0;
+  function update(g){
+    if(g!=null)geo=g;
+    const Lp=parseInt(iLp.value),r=parseFloat(iR.value);
+    vLp.innerHTML=`<span>${Lp} dB</span>`;
+    vR.innerHTML=`<span>${r.toFixed(1)} m</span>`;
+    const S=geo===0?2*Math.PI*r*r:4*Math.PI*r*r;
+    const Lw=Lp+10*Math.log10(S);
+    const add=geo===0?8:11;
+    out.innerHTML=`S = ${geo===0?'2':'4'}πr² = <strong>${S.toFixed(1)} m²</strong><br>L<sub>W</sub> = L<sub>p</sub> + 10·lg(S/S₀) = <strong>${Lw.toFixed(1)} dB</strong><br><span style="font-size:11px;color:#64748b">Schnellformel: L<sub>W</sub> ≈ L<sub>p</sub> + 20·lg(r) + ${add} = ${(Lp+20*Math.log10(r)+add).toFixed(1)} dB</span>`;
+  }
+  iLp.oninput=update;iR.oninput=update;update(0);
+}
+
+// --- q17: Reflexions-Explorer ---
+function ixQ17(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Zw/Z₀ (log)',min:-2,max:2,step:0.01,value:0});
+  el.appendChild(row);
+  const out=mkOut(el);
+  const marks=[[0.01,'schallweich'],[1,'reflexionsfrei'],[100,'schallhart']];
+  function update(){
+    const ratio=Math.pow(10,parseFloat(inp.value));
+    const r=(ratio-1)/(ratio+1);
+    const rAbs=Math.abs(r);
+    const rho=r*r;
+    const alpha=1-rho;
+    val.innerHTML=`Z<sub>W</sub>/Z₀ = <span>${ratio.toFixed(2)}</span>`;
+    let label='';
+    if(ratio<0.05)label=' → fast schallweich (r ≈ −1)';
+    else if(Math.abs(ratio-1)<0.1)label=' → fast reflexionsfrei (r ≈ 0)';
+    else if(ratio>50)label=' → fast schallhart (r ≈ +1)';
+    out.innerHTML=`r = <strong>${r.toFixed(3)}</strong>${label}<br>|r|² = ρ = <strong>${rho.toFixed(3)}</strong><br>α = 1 − ρ = <strong>${alpha.toFixed(3)}</strong>`
+      +`<div class="ix-stacked"><div style="width:${rho*100}%;background:#ef4444">ρ</div><div style="width:${alpha*100}%;background:#22c55e">α</div></div>`;
+  }
+  inp.oninput=update;update();
+}
+
+// --- q19: Snellius interaktiv ---
+function ixQ19(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Einfallswinkel θ₁',min:0,max:89,step:1,value:30});
+  el.appendChild(row);
+  const tabs=mkTabs(el,['Luft → Wasser (c₂>c₁)','Langsam → Schnell'],draw);
+  const {ctx,w,h}=mkCanvas(el,300,180);
+  const out=mkOut(el);
+  let medium=0;
+  function draw(m){
+    if(m!=null)medium=m;
+    const theta1=parseFloat(inp.value)*Math.PI/180;
+    const c1=medium===0?343:343,c2=medium===0?1480:600;
+    val.innerHTML=`θ₁ = <span>${Math.round(theta1*180/Math.PI)}°</span>`;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const midY=h/2;
+    // media
+    ctx.fillStyle='rgba(56,189,248,0.05)';ctx.fillRect(0,0,w,midY);
+    ctx.fillStyle='rgba(167,139,250,0.05)';ctx.fillRect(0,midY,w,h-midY);
+    // interface
+    ctx.strokeStyle='rgba(148,163,184,.3)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(0,midY);ctx.lineTo(w,midY);ctx.stroke();
+    // labels
+    ctx.fillStyle='#38bdf8';ctx.font='10px system-ui';ctx.fillText(`Medium 1: c₁=${c1} m/s`,5,14);
+    ctx.fillStyle='#a78bfa';ctx.fillText(`Medium 2: c₂=${c2} m/s`,5,h-6);
+    const hitX=w/2;
+    // incident ray
+    const len=80;
+    const ix=hitX-len*Math.sin(theta1),iy=midY-len*Math.cos(theta1);
+    ctx.strokeStyle='#f59e0b';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ix,iy);ctx.lineTo(hitX,midY);ctx.stroke();
+    // arrow
+    ctx.fillStyle='#f59e0b';ctx.beginPath();
+    const aAng=Math.atan2(midY-iy,hitX-ix);
+    ctx.moveTo(hitX-10*Math.cos(aAng-0.3),midY-10*Math.sin(aAng-0.3));
+    ctx.lineTo(hitX,midY);ctx.lineTo(hitX-10*Math.cos(aAng+0.3),midY-10*Math.sin(aAng+0.3));ctx.fill();
+    // reflected
+    const rx=hitX+len*Math.sin(theta1),ry=midY-len*Math.cos(theta1);
+    ctx.strokeStyle='#ef4444';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(hitX,midY);ctx.lineTo(rx,ry);ctx.stroke();ctx.setLineDash([]);
+    // refracted
+    const sinT2=c2/c1*Math.sin(theta1);
+    let totalRefl=sinT2>=1;
+    if(!totalRefl){
+      const theta2=Math.asin(sinT2);
+      const tx=hitX+len*Math.sin(theta2),ty=midY+len*Math.cos(theta2);
+      ctx.strokeStyle='#22c55e';ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(hitX,midY);ctx.lineTo(tx,ty);ctx.stroke();
+      out.innerHTML=`θ₂ = <strong>${(theta2*180/Math.PI).toFixed(1)}°</strong><br>sin(θ₁)/c₁ = sin(θ₂)/c₂ = <strong>${(Math.sin(theta1)/c1).toExponential(3)}</strong>`;
+    }else{
+      out.innerHTML=`<strong style="color:#ef4444">Totalreflexion!</strong> sin(θ₂) = ${sinT2.toFixed(3)} > 1<br>Grenzwinkel θ<sub>c</sub> = ${(Math.asin(c1/c2)*180/Math.PI).toFixed(1)}°`;
+    }
+    // normal
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.setLineDash([2,2]);ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(hitX,midY-60);ctx.lineTo(hitX,midY+60);ctx.stroke();ctx.setLineDash([]);
+  }
+  inp.oninput=()=>draw();draw(0);
+  mkLegend(el,[{color:'#f59e0b',label:'Einfallend'},{color:'#ef4444',label:'Reflektiert'},{color:'#22c55e',label:'Gebrochen'}]);
+}
+
+// --- q20: Atmosphärische Brechung ---
+function ixQ20(el){
+  const tabs=mkTabs(el,['Normalfall (warm unten)','Inversion (kalt unten)'],draw);
+  const {ctx,w,h}=mkCanvas(el,300,150);
+  let inv=0;
+  function draw(m){
+    if(m!=null)inv=m;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    // ground
+    ctx.fillStyle='rgba(34,197,94,0.15)';ctx.fillRect(0,h-15,w,15);
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';ctx.fillText('Boden',5,h-4);
+    // temperature gradient
+    const grad=ctx.createLinearGradient(0,20,0,h-15);
+    if(inv===0){grad.addColorStop(0,'rgba(56,189,248,0.1)');grad.addColorStop(1,'rgba(239,68,68,0.1)');}
+    else{grad.addColorStop(0,'rgba(239,68,68,0.1)');grad.addColorStop(1,'rgba(56,189,248,0.1)');}
+    ctx.fillStyle=grad;ctx.fillRect(0,20,w,h-35);
+    // T labels
+    ctx.fillStyle=inv===0?'#ef4444':'#38bdf8';ctx.font='9px system-ui';ctx.fillText(inv===0?'warm':'kalt',w-30,h-20);
+    ctx.fillStyle=inv===0?'#38bdf8':'#ef4444';ctx.fillText(inv===0?'kalt':'warm',w-30,30);
+    // sound rays
+    const srcX=30,srcY=h-25;
+    ctx.fillStyle='#f59e0b';ctx.beginPath();ctx.arc(srcX,srcY,4,0,Math.PI*2);ctx.fill();
+    for(let a=-0.3;a<=0.5;a+=0.15){
+      ctx.beginPath();ctx.strokeStyle='rgba(245,158,11,0.7)';ctx.lineWidth=1.5;
+      let x=srcX,y=srcY;
+      const vx=Math.cos(a)*2,vy=-Math.sin(a)*2;
+      let dx=vx,dy=vy;
+      ctx.moveTo(x,y);
+      for(let s=0;s<120;s++){
+        const curve=inv===0?0.015:-0.015;// normal: bend up, inversion: bend down
+        dy+=curve;
+        x+=dx;y+=dy;
+        if(y>=h-15||y<5)break;
+        ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    // shadow zone
+    if(inv===0){
+      ctx.fillStyle='rgba(239,68,68,0.08)';ctx.fillRect(w*0.5,h-40,w*0.5,25);
+      ctx.fillStyle='#ef4444';ctx.font='bold 10px system-ui';ctx.fillText('Schattenzone',w*0.55,h-22);
+    }else{
+      ctx.fillStyle='#22c55e';ctx.font='bold 10px system-ui';ctx.fillText('Schall breitet sich weit aus',w*0.3,h-22);
+    }
+  }
+  draw(0);
+  mkInfo(el,inv===0?'Normal: Schall biegt nach oben → Schattenzone in der Ferne':'Inversion: Schall biegt zum Boden → große Reichweite');
+}
+
+// --- z01/q21: Leistungsbilanz ---
+function ixZ01(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:iRho,val:vRho}=mkSlider(row,{label:'Reflexionsgrad ρ',min:0,max:1,step:0.01,value:0.3});
+  const {inp:iTau,val:vTau}=mkSlider(row,{label:'Transmissionsgrad τ',min:0,max:1,step:0.01,value:0.1});
+  el.appendChild(row);
+  const out=mkOut(el);
+  function update(){
+    let rho=parseFloat(iRho.value),tau=parseFloat(iTau.value);
+    if(rho+tau>1){tau=1-rho;iTau.value=tau;}
+    const delta=Math.max(0,1-rho-tau);
+    const alpha=1-rho;
+    vRho.innerHTML=`ρ = <span>${rho.toFixed(2)}</span>`;
+    vTau.innerHTML=`τ = <span>${tau.toFixed(2)}</span>`;
+    out.innerHTML=`δ = 1 − ρ − τ = <strong>${delta.toFixed(2)}</strong><br>α = 1 − ρ = <strong>${alpha.toFixed(2)}</strong> = τ + δ = ${tau.toFixed(2)} + ${delta.toFixed(2)}`
+      +`<div class="ix-stacked"><div style="width:${rho*100}%;background:#ef4444" title="ρ">ρ ${(rho*100).toFixed(0)}%</div><div style="width:${tau*100}%;background:#22c55e" title="τ">τ ${(tau*100).toFixed(0)}%</div><div style="width:${delta*100}%;background:#f59e0b" title="δ">δ ${(delta*100).toFixed(0)}%</div></div>`;
+  }
+  iRho.oninput=update;iTau.oninput=update;update();
+  mkLegend(el,[{color:'#ef4444',label:'Reflexion ρ'},{color:'#22c55e',label:'Transmission τ'},{color:'#f59e0b',label:'Dissipation δ'}]);
+}
+
+// --- q29: Absorbergrad-Plot ---
+function ixQ29(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:iD,val:vD}=mkSlider(row,{label:'Schichtdicke d (cm)',min:1,max:30,step:0.5,value:5});
+  const {inp:iXi,val:vXi}=mkSlider(row,{label:'Ξ (Pa·s/m²)',min:3,max:4.7,step:0.01,value:3.7});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  const out=mkOut(el);
+  function draw(){
+    const d=parseFloat(iD.value)/100;// m
+    const Xi=Math.pow(10,parseFloat(iXi.value));
+    vD.innerHTML=`d = <span>${(d*100).toFixed(1)} cm</span>`;
+    vXi.innerHTML=`Ξ = <span>${Xi>=10000?(Xi/1000).toFixed(1)+'k':Math.round(Xi)}</span> Pa·s/m²`;
+    const eps=Xi*d/412;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pad={l:30,r:10,t:10,b:25};
+    const pw=w-pad.l-pad.r,ph=h-pad.t-pad.b;
+    // axes
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';
+    ctx.fillText('f (Hz)',w/2,h-3);ctx.fillText('α',pad.l-12,pad.t+12);
+    [0,0.25,0.5,0.75,1].forEach(a=>{
+      const y=h-pad.b-a*ph;
+      ctx.fillText(a.toFixed(2),2,y+3);
+      ctx.strokeStyle='rgba(148,163,184,.08)';ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();
+    });
+    [100,250,500,1000,2000,5000].forEach(f=>{
+      const x=pad.l+Math.log10(f/50)/Math.log10(10000/50)*pw;
+      ctx.fillText(f>=1000?(f/1000)+'k':f,x-6,h-pad.b+12);
+    });
+    // simplified absorption model: α ≈ 1 - |(Zw-Z0)/(Zw+Z0)|² where Zw ≈ -jZ0*cot(keff*d)
+    ctx.beginPath();ctx.strokeStyle='#a78bfa';ctx.lineWidth=2;
+    for(let i=0;i<pw;i++){
+      const f=50*Math.pow(10000/50,i/pw);
+      const k=2*Math.PI*f/343;
+      // effective complex k with losses: Im(k) ≈ k*Xi/(2*rho0*c*2*pi*f) simplified
+      const loss=Xi/(2*412*2*Math.PI*f)*k;
+      const kd=k*d;
+      // simplified: alpha ≈ tanh(loss*d) * (1 + sin(2*kd)/(2*kd)) capped at 1
+      let alpha=1-Math.exp(-2*loss*d);
+      alpha=Math.min(1,alpha*(1+0.5*Math.sin(2*kd)/(kd+0.1)));
+      alpha=Math.max(0,Math.min(1,alpha));
+      const x=pad.l+i,y=h-pad.b-alpha*ph;
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    out.innerHTML=`ε = Ξ·d/Z₀ = <strong>${eps.toFixed(2)}</strong> ${eps>0.8&&eps<4?'<span style="color:#4ade80">✓ optimal (1–3)</span>':'<span style="color:#64748b">(optimal: 1–3)</span>'}`;
+  }
+  iD.oninput=draw;iXi.oninput=draw;draw();
+}
+
+// --- q30: Eigenfrequenz-Rechner ---
+function ixQ30(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:iLx,val:vLx}=mkSlider(row,{label:'Lx (m)',min:0.2,max:10,step:0.1,value:5});
+  const {inp:iLy,val:vLy}=mkSlider(row,{label:'Ly (m)',min:0.2,max:10,step:0.1,value:4});
+  const {inp:iLz,val:vLz}=mkSlider(row,{label:'Lz (m)',min:0.2,max:10,step:0.1,value:3});
+  el.appendChild(row);
+  const out=mkOut(el);
+  function update(){
+    const Lx=parseFloat(iLx.value),Ly=parseFloat(iLy.value),Lz=parseFloat(iLz.value);
+    vLx.innerHTML=`<span>${Lx.toFixed(1)}</span> m`;
+    vLy.innerHTML=`<span>${Ly.toFixed(1)}</span> m`;
+    vLz.innerHTML=`<span>${Lz.toFixed(1)}</span> m`;
+    const c=343;const modes=[];
+    for(let m=0;m<=5;m++)for(let n=0;n<=5;n++)for(let o=0;o<=5;o++){
+      if(m===0&&n===0&&o===0)continue;
+      const f=c/2*Math.sqrt((m/Lx)**2+(n/Ly)**2+(o/Lz)**2);
+      if(f<2000)modes.push({m,n,o,f});
+    }
+    modes.sort((a,b)=>a.f-b.f);
+    const top=modes.slice(0,12);
+    let html=`<strong>V = ${(Lx*Ly*Lz).toFixed(1)} m³</strong> · Erste ${top.length} Eigenfrequenzen:<table class="ix-tbl"><tr><th>#</th><th>(m,n,o)</th><th>f (Hz)</th><th>Typ</th></tr>`;
+    top.forEach((md,i)=>{
+      const zeros=[md.m,md.n,md.o].filter(x=>x===0).length;
+      const typ=zeros===2?'Kante':zeros===1?'Fläche':'Raum';
+      html+=`<tr><td>${i+1}</td><td>(${md.m},${md.n},${md.o})</td><td><strong>${md.f.toFixed(1)}</strong></td><td style="color:${zeros===2?'#f59e0b':zeros===1?'#38bdf8':'#a78bfa'}">${typ}</td></tr>`;
+    });
+    html+=`</table>`;
+    out.innerHTML=html;
+  }
+  iLx.oninput=update;iLy.oninput=update;iLz.oninput=update;update();
+}
+
+// --- q33: Sabine-Rechner ---
+function ixQ33(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:iV,val:vV}=mkSlider(row,{label:'Volumen V (m³)',min:10,max:500,step:5,value:100});
+  const {inp:iA,val:vA}=mkSlider(row,{label:'Absorptionsfläche A (m²)',min:1,max:100,step:1,value:20});
+  el.appendChild(row);
+  const out=mkOut(el);
+  function update(){
+    const V=parseFloat(iV.value),A=parseFloat(iA.value);
+    vV.innerHTML=`<span>${V}</span> m³`;
+    vA.innerHTML=`<span>${A}</span> m²`;
+    const T=0.161*V/A;
+    const T2=0.161*V/(A*2);
+    out.innerHTML=`T = 0,161 · V / A = <strong>${T.toFixed(2)} s</strong><br>`
+      +`<span style="font-size:11px;color:#64748b">Bei Verdopplung von A → T = ${T2.toFixed(2)} s (−3 dB Pegelminderung)</span>`;
+  }
+  iV.oninput=update;iA.oninput=update;update();
+}
+
+// --- q34: Nachhall-Abklingkurve ---
+function ixQ34(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Nachhallzeit T (s)',min:0.3,max:5,step:0.1,value:1.5});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  let playing=false,tAnim=0;
+  const pb=document.createElement('button');pb.className='ix-btn';pb.textContent='▶ Abklingen starten';
+  pb.onclick=()=>{playing=!playing;tAnim=0;pb.textContent=playing?'⏸ Pause':'▶ Abklingen starten';if(playing)animate();};
+  el.appendChild(pb);
+  const pad={l:35,r:10,t:10,b:25};
+  function drawCurve(){
+    const T=parseFloat(inp.value);
+    val.innerHTML=`T = <span>${T.toFixed(1)} s</span>`;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pw=w-pad.l-pad.r,ph=h-pad.t-pad.b;
+    // axes
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';
+    ctx.fillText('t (s)',w/2,h-3);ctx.fillText('Lp (dB)',1,pad.t+10);
+    // dB scale
+    const tMax=Math.max(T*1.5,2);
+    [0,-20,-40,-60].forEach(db=>{
+      const y=pad.t+(-db/70)*ph;
+      ctx.fillText(db+'',2,y+3);
+      ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();
+    });
+    // 60 dB line
+    const y60=pad.t+(60/70)*ph;
+    ctx.strokeStyle='rgba(239,68,68,.3)';ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(pad.l,y60);ctx.lineTo(w-pad.r,y60);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#ef4444';ctx.fillText('−60 dB',w-pad.r-30,y60-4);
+    // T marker
+    const xT=pad.l+(T/tMax)*pw;
+    ctx.strokeStyle='rgba(167,139,250,.3)';ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(xT,pad.t);ctx.lineTo(xT,h-pad.b);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#a78bfa';ctx.fillText('T',xT-3,h-pad.b+12);
+    // decay curve
+    ctx.beginPath();ctx.strokeStyle='#f59e0b';ctx.lineWidth=2;
+    for(let i=0;i<=pw;i++){
+      const t=i/pw*tMax;
+      const db=-60*t/T;
+      if(db<-70)break;
+      const y=pad.t+(-db/70)*ph;
+      i===0?ctx.moveTo(pad.l+i,y):ctx.lineTo(pad.l+i,y);
+    }
+    ctx.stroke();
+    // animation cursor
+    if(playing&&tAnim>0){
+      const dbNow=-60*tAnim/T;
+      if(dbNow>=-70){
+        const xa=pad.l+(tAnim/tMax)*pw,ya=pad.t+(-dbNow/70)*ph;
+        ctx.beginPath();ctx.arc(xa,ya,5,0,Math.PI*2);ctx.fillStyle='#a78bfa';ctx.fill();
+      }
+    }
+  }
+  function animate(){
+    if(!playing)return;
+    const T=parseFloat(inp.value);
+    tAnim+=1/60;
+    if(tAnim>T*1.5){playing=false;pb.textContent='▶ Abklingen starten';}
+    drawCurve();
+    if(playing)activeAnims.push(requestAnimationFrame(animate));
+  }
+  inp.oninput=drawCurve;drawCurve();
+}
+
+// --- q35/q37: Quelltyp-Zuordnung ---
+function ixQ35(el){
+  const items=[
+    {text:'Auspuff',correct:0},{text:'Lautsprecher',correct:0},
+    {text:'Stimme',correct:0},{text:'Trommel (Membran)',correct:0},
+    {text:'Ventilatorschaufel',correct:1},{text:'Wirbelablösung',correct:1},
+    {text:'Turbulenter Freistrahl',correct:2},{text:'Düse (Überschall)',correct:2}
+  ];
+  const cats=[{label:'Monopol (P∝U⁴)',color:'#f59e0b'},{label:'Dipol (P∝U⁶)',color:'#a78bfa'},{label:'Quadrupol (P∝U⁸)',color:'#38bdf8'}];
+  let assignments={},selItem=null,checked=false;
+  function redraw(){
+    el.innerHTML='';
+    // categories
+    const cg=document.createElement('div');cg.className='ix-quiz-cats';
+    cats.forEach((c,i)=>{
+      const d=document.createElement('div');d.className='ix-quiz-cat'+(selItem!=null?' active':'');
+      d.style.borderColor=c.color;d.style.color=c.color;d.textContent=c.label;
+      if(selItem!=null&&!checked)d.onclick=()=>{assignments[selItem]=i;selItem=null;redraw();};
+      cg.appendChild(d);
+    });
+    el.appendChild(cg);
+    // items
+    const ig=document.createElement('div');ig.className='ix-quiz-items';
+    items.forEach((it,i)=>{
+      const b=document.createElement('button');
+      let cls='ix-quiz-item';
+      if(selItem===i)cls+=' sel';
+      if(assignments[i]!=null&&!checked)cls+=' placed';
+      if(checked)cls+=' '+(assignments[i]===it.correct?'correct':'wrong');
+      b.className=cls;
+      b.textContent=it.text+(assignments[i]!=null?' → '+cats[assignments[i]].label.split(' ')[0]:'');
+      if(!checked)b.onclick=()=>{
+        if(assignments[i]!=null){delete assignments[i];selItem=null;redraw();return;}
+        selItem=i;redraw();
+      };
+      ig.appendChild(b);
+    });
+    el.appendChild(ig);
+    if(selItem!=null)mkInfo(el,'Tippe auf eine Kategorie: Monopol, Dipol oder Quadrupol');
+    if(Object.keys(assignments).length===items.length&&!checked){
+      const cb=document.createElement('button');cb.className='ix-btn';cb.textContent='✓ Überprüfen';
+      cb.onclick=()=>{checked=true;redraw();};el.appendChild(cb);
+    }
+    if(checked){
+      const sc=items.filter((_,i)=>assignments[i]===items[i].correct).length;
+      const o=mkOut(el);o.innerHTML=`<strong>${sc}/${items.length}</strong> richtig`;
+      const rb=document.createElement('button');rb.className='ix-btn';rb.textContent='↻ Nochmal';rb.style.marginTop='8px';
+      rb.onclick=()=>{assignments={};selItem=null;checked=false;redraw();};el.appendChild(rb);
+    }
+  }
+  redraw();
+}
+
+// --- q40: Abstrahlimpedanz Zr(ka) ---
+function ixQ40(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'ka (log)',min:-2,max:1.5,step:0.01,value:0});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  const out=mkOut(el);
+  mkLegend(el,[{color:'#f59e0b',label:'Re(Zr)/ρ₀c'},{color:'#38bdf8',label:'Im(Zr)/ρ₀c'}]);
+  function draw(){
+    const kaVal=Math.pow(10,parseFloat(inp.value));
+    val.innerHTML=`ka = <span>${kaVal.toFixed(3)}</span>`;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pad={l:30,r:10,t:10,b:25};
+    const pw=w-pad.l-pad.r,ph=h-pad.t-pad.b;
+    ctx.strokeStyle='rgba(148,163,184,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';ctx.fillText('ka',w/2,h-3);
+    [0,0.5,1].forEach(v=>{const y=h-pad.b-v*ph;ctx.fillText(v.toFixed(1),4,y+3);});
+    // curves
+    [
+      {fn:ka=>(ka*ka)/(1+ka*ka),color:'#f59e0b'},
+      {fn:ka=>ka/(1+ka*ka),color:'#38bdf8'}
+    ].forEach(cv=>{
+      ctx.beginPath();ctx.strokeStyle=cv.color;ctx.lineWidth=2;
+      for(let i=0;i<=pw;i++){
+        const ka=Math.pow(10,-2+3.5*i/pw);
+        const v=cv.fn(ka);
+        const x=pad.l+i,y=h-pad.b-v*ph;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    });
+    // marker
+    const mx=pad.l+((Math.log10(kaVal)+2)/3.5)*pw;
+    const reVal=(kaVal*kaVal)/(1+kaVal*kaVal);
+    const imVal=kaVal/(1+kaVal*kaVal);
+    ctx.beginPath();ctx.arc(mx,h-pad.b-reVal*ph,4,0,Math.PI*2);ctx.fillStyle='#f59e0b';ctx.fill();
+    ctx.beginPath();ctx.arc(mx,h-pad.b-imVal*ph,4,0,Math.PI*2);ctx.fillStyle='#38bdf8';ctx.fill();
+    const eff=kaVal>2?'effizient (ka≫1)':kaVal<0.3?'ineffizient (ka≪1)':'Übergang';
+    out.innerHTML=`Re(Z<sub>r</sub>)/ρ₀c = <strong>${reVal.toFixed(3)}</strong> · Im(Z<sub>r</sub>)/ρ₀c = <strong>${imVal.toFixed(3)}</strong><br><span style="color:${kaVal>2?'#4ade80':kaVal<0.3?'#f87171':'#f59e0b'}">${eff}</span>`;
+  }
+  inp.oninput=draw;draw();
+}
+
+// --- q42/q46: U → P Vergleich ---
+function ixQ42(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Strömungsgeschwindigkeit U (m/s)',min:1,max:80,step:1,value:10});
+  el.appendChild(row);
+  const out=mkOut(el);
+  function update(){
+    const U=parseInt(inp.value);
+    const ref=10;// reference U
+    const dBM=40*Math.log10(U/ref),dBD=60*Math.log10(U/ref),dBQ=80*Math.log10(U/ref);
+    val.innerHTML=`U = <span>${U} m/s</span>`;
+    const maxDB=Math.max(80,Math.abs(dBQ)+10);
+    const pct=v=>Math.max(2,Math.min(100,(v+maxDB)/(2*maxDB)*100));
+    out.innerHTML=`<div style="font-size:11px;color:#64748b;margin-bottom:6px">Pegeländerung relativ zu U₀ = ${ref} m/s:</div>`
+      +`<div class="ix-bar-wrap">`
+      +`<div class="ix-bar-row"><span class="ix-bar-label">Monopol U⁴</span><div class="ix-bar" style="width:${pct(dBM)}%;background:#f59e0b"><span class="ix-bar-val">${dBM>=0?'+':''}${dBM.toFixed(1)} dB</span></div></div>`
+      +`<div class="ix-bar-row"><span class="ix-bar-label">Dipol U⁶</span><div class="ix-bar" style="width:${pct(dBD)}%;background:#a78bfa"><span class="ix-bar-val">${dBD>=0?'+':''}${dBD.toFixed(1)} dB</span></div></div>`
+      +`<div class="ix-bar-row"><span class="ix-bar-label">Quadrupol U⁸</span><div class="ix-bar" style="width:${pct(dBQ)}%;background:#38bdf8"><span class="ix-bar-val">${dBQ>=0?'+':''}${dBQ.toFixed(1)} dB</span></div></div>`
+      +`</div>`;
+  }
+  inp.oninput=update;update();
+  mkInfo(el,'Verdopplung der Geschwindigkeit: Monopol +12dB, Dipol +18dB, Quadrupol +24dB!');
+}
+
+// --- q45/q47: Monopol/Dipol/Quadrupol Richtcharakteristik ---
+function ixQ45(el){
+  const tabs=mkTabs(el,['Monopol','Dipol','Quadrupol'],draw);
+  const {ctx,w,h}=mkCanvas(el,260,260);
+  const out=mkOut(el);
+  let mode=0;
+  const patterns=[
+    [{fn:()=>1,color:'#f59e0b',label:'Γ = 1'}],
+    [{fn:t=>Math.abs(Math.cos(t)),color:'#a78bfa',label:'Γ = |cos ϑ|'}],
+    [{fn:t=>Math.cos(t)**2,color:'#38bdf8',label:'Γ = cos² ϑ'}]
+  ];
+  const info=[
+    {g:1,DI:'0 dB',desc:'Kugelsymmetrisch'},
+    {g:3,DI:'4.8 dB',desc:'Achtförmig, Nullstellen bei 90°/270°'},
+    {g:5,DI:'7.0 dB',desc:'Stärker gebündelt, cos²-Abhängigkeit'}
+  ];
+  function draw(m){
+    if(m!=null)mode=m;
+    const cx=w/2,cy=h/2,R=w/2-20;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    drawPolar(ctx,cx,cy,R,patterns[mode]);
+    // angle labels
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';
+    ctx.fillText('0°',cx+R+4,cy+3);ctx.fillText('90°',cx-6,cy-R-4);
+    ctx.fillText('180°',cx-R-22,cy+3);ctx.fillText('270°',cx-6,cy+R+12);
+    const d=info[mode];
+    out.innerHTML=`γ = <strong>${d.g}</strong> · DI = <strong>${d.DI}</strong><br><span style="font-size:12px">${d.desc}</span>`;
+  }
+  draw(0);
+}
+
+// --- q48: Gleich-/Gegenphasig ---
+function ixQ48(el){
+  const tabs=mkTabs(el,['Gleichphasig','Gegenphasig (Dipol)'],draw);
+  const {ctx,w,h}=mkCanvas(el,240,240);
+  const out=mkOut(el);
+  let mode=0;
+  function draw(m){
+    if(m!=null)mode=m;
+    const cx=w/2,cy=h/2,R=w/2-20;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pats=mode===0?
+      [{fn:()=>1,color:'#f59e0b',label:'2× Monopol'}]:
+      [{fn:t=>Math.abs(Math.cos(t)),color:'#a78bfa',label:'Dipol'}];
+    drawPolar(ctx,cx,cy,R,pats);
+    if(mode===0)out.innerHTML=`P ≈ <strong>4 × P<sub>einzeln</sub></strong> (Druckverdopplung → 4× Leistung)`;
+    else out.innerHTML=`P ≈ <strong>(kd)²/3 × P<sub>einzeln</sub></strong> — drastische Reduktion!<br><span style="font-size:11px;color:#64748b">→ Akustischer Kurzschluss bei kd ≪ 1</span>`;
+  }
+  draw(0);
+}
+
+// --- q49/q50: Linienarray ---
+function ixQ49(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp:ikD,val:vkD}=mkSlider(row,{label:'kD (Helmholtz)',min:0.1,max:10,step:0.1,value:2});
+  const {inp:iN,val:vN}=mkSlider(row,{label:'Strahleranzahl N',min:2,max:16,step:1,value:4});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,240,240);
+  function draw(){
+    const kD=parseFloat(ikD.value),N=parseInt(iN.value);
+    vkD.innerHTML=`kD = <span>${kD.toFixed(1)}</span>`;
+    vN.innerHTML=`N = <span>${N}</span>`;
+    const cx=w/2,cy=h/2,R=w/2-20;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pat=[{fn:t=>{
+      const psi=kD*Math.cos(t);
+      if(Math.abs(psi)<1e-10)return 1;
+      const v=Math.sin(N*psi/2)/(N*Math.sin(psi/2));
+      return Math.abs(v);
+    },color:'#a78bfa',label:'Array'}];
+    drawPolar(ctx,cx,cy,R,pat);
+    ctx.fillStyle='#475569';ctx.font='9px system-ui';
+    ctx.fillText('→ Achse',cx+R+2,cy+3);
+    ctx.fillText('↑ senkrecht',cx-20,cy-R-4);
+  }
+  ikD.oninput=draw;iN.oninput=draw;draw();
+  mkInfo(el,'Hauptkeule senkrecht zur Array-Achse. Mehr Strahler → schmalere Keule.');
+}
+
+// --- q51: Kolbenstrahler ---
+function ixQ51(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'ka (Helmholtz-Zahl)',min:0.1,max:15,step:0.1,value:3});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,240,240);
+  // Bessel J1 approximation
+  function J1(x){
+    if(Math.abs(x)<1e-10)return 0;
+    // polynomial approximation for small x, series for larger
+    if(Math.abs(x)<4){
+      let s=0,t=x/2;
+      for(let k=0;k<20;k++){s+=((k%2===0?1:-1)*t)/(factorial(k)*factorial(k+1));t*=x*x/4;}
+      return s;
+    }
+    // asymptotic
+    return Math.sqrt(2/(Math.PI*x))*Math.cos(x-3*Math.PI/4);
+  }
+  function factorial(n){let r=1;for(let i=2;i<=n;i++)r*=i;return r;}
+  // Better J1 using series
+  function besselJ1(x){
+    if(Math.abs(x)<1e-10)return 0;
+    let sum=0,term=x/2;
+    for(let m=0;m<25;m++){
+      sum+=term;
+      term*=-(x*x/4)/((m+1)*(m+2));
+    }
+    return sum;
+  }
+  function draw(){
+    const ka=parseFloat(inp.value);
+    val.innerHTML=`ka = <span>${ka.toFixed(1)}</span>`;
+    const cx=w/2,cy=h/2,R=w/2-20;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const pat=[{fn:t=>{
+      const sinT=Math.sin(t);
+      const arg=ka*sinT;
+      if(Math.abs(arg)<1e-10)return 1;
+      const v=2*besselJ1(arg)/arg;
+      return Math.abs(v);
+    },color:'#f59e0b',label:'Kolben'}];
+    drawPolar(ctx,cx,cy,R,pat);
+  }
+  inp.oninput=draw;draw();
+  mkInfo(el,'ka≪1: Monopol-artig · ka≫1: stark gebündelt (schmale Hauptkeule)');
+}
+
+// --- q53: Doppler-Animation ---
+function ixQ53(el){
+  const row=document.createElement('div');row.className='ix-row';
+  const {inp,val}=mkSlider(row,{label:'Mach-Zahl M',min:0,max:0.9,step:0.01,value:0.4});
+  el.appendChild(row);
+  const {ctx,w,h}=mkCanvas(el,300,160);
+  const out=mkOut(el);
+  let t=0;
+  function draw(){
+    const M=parseFloat(inp.value);
+    val.innerHTML=`M = <span>${M.toFixed(2)}</span> <small>(v = ${(M*343).toFixed(0)} m/s)</small>`;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,w,h);
+    const cy=h/2;
+    // source position cycles across canvas
+    const period=5;// seconds for one crossing
+    const srcX=((t%period)/period)*w;
+    // emit circles at regular intervals
+    const emitInterval=0.15;
+    const nCircles=Math.floor(t/emitInterval);
+    for(let i=Math.max(0,nCircles-30);i<=nCircles;i++){
+      const emitTime=i*emitInterval;
+      const emitX=((emitTime%period)/period)*w;
+      const age=t-emitTime;
+      if(age<0)continue;
+      const r=age*60;// radius grows with time (represents c)
+      if(r>w)continue;
+      const alpha=Math.max(0.05,0.5-age*0.1);
+      ctx.strokeStyle=`rgba(56,189,248,${alpha})`;ctx.lineWidth=1;
+      ctx.beginPath();ctx.arc(emitX,cy,r,0,Math.PI*2);ctx.stroke();
+    }
+    // source
+    ctx.beginPath();ctx.arc(srcX,cy,5,0,Math.PI*2);ctx.fillStyle='#f59e0b';ctx.fill();
+    // labels
+    const fFront=1/(1-M),fBack=1/(1+M);
+    ctx.fillStyle='#94a3b8';ctx.font='10px system-ui';
+    ctx.fillText(`f_vorne: ×${fFront.toFixed(2)}`,w-90,16);
+    ctx.fillText(`f_hinten: ×${fBack.toFixed(2)}`,5,16);
+    out.innerHTML=`f<sub>empf</sub> = f₀ / (1 − M·cos ϑ)<br>Vorne: <strong style="color:#ef4444">×${fFront.toFixed(2)}</strong> · Hinten: <strong style="color:#22c55e">×${fBack.toFixed(2)}</strong>`;
+    t+=1/60;
+    activeAnims.push(requestAnimationFrame(draw));
+  }
+  draw();
+}
+
+// ===== INTERACTIVE MAP =====
+const cardIx={
+  q03:ixQ03,q04:ixQ04,q05:ixQ05,q06:ixQ06,q07:ixQ07,
+  q09:ixQ09,q10:ixQ10,q12:ixQ12,q13:ixQ13,q14:ixQ14,
+  q16:ixQ16,q17:ixQ17,q19:ixQ19,q20:ixQ20,
+  z01:ixZ01,z02:ixQ16,q21:ixZ01,
+  q29:ixQ29,q30:ixQ30,q33:ixQ33,q34:ixQ34,
+  q35:ixQ35,q37:ixQ35,
+  q40:ixQ40,q42:ixQ42,q46:ixQ42,
+  q45:ixQ45,q47:ixQ45,q48:ixQ48,
+  q49:ixQ49,q50:ixQ49,q51:ixQ51,q53:ixQ53
+};
+
+function mountIx(cardId){
+  const el=document.getElementById('ix-mount');
+  if(!el||!cardIx[cardId])return;
+  el.innerHTML='';
+  cardIx[cardId](el);
 }
 
 // ===== INIT =====
